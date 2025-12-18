@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referanslar | Çözüm Creative</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <style>
+        /* --- GENEL AYARLAR --- */
+        :root {
+            --primary: #d32f2f;
+            --dark: #050505;
+            --bg-dark: #0a0a0a;
+            --item-bg: #111;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- HEADER & NAV (Mobil Uyumlu Standart) --- */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 15px 5%; 
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; background: rgba(5,5,5,0.95);
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s;
+        }
+        .logo img { height: 60px; width: auto; } /* Diğer sayfalarla eşitlendi */
+        
+        /* MASAÜSTÜ MENÜ */
+        .desktop-nav ul { display: flex; gap: 30px; align-items: center; }
+        .desktop-nav li { position: relative; padding: 10px 0; }
+        .desktop-nav a { color: #fff; font-weight: 600; font-size: 0.95rem; opacity: 0.8; }
+        .desktop-nav a:hover { color: var(--primary); opacity: 1; }
+        
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 0; width: 240px;
+            background: rgba(10, 10, 10, 0.95); border: 1px solid rgba(255,255,255,0.1); 
+            border-top: 3px solid var(--primary);
+            padding: 10px 0; opacity: 0; visibility: hidden; transform: translateY(20px);
+            transition: all 0.4s ease; display: flex; flex-direction: column; z-index: 1100;
+        }
+        .desktop-nav li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu a { padding: 15px 20px; color: #ccc !important; border-left: 3px solid transparent; display: block; }
+        .dropdown-menu a:hover { background: rgba(211,47,47,0.1); border-left: 3px solid var(--primary); color: #fff !important; }
+
+        .cta-btn-header {
+            background:#fff; color:#000; padding:10px 25px; border-radius:50px; font-weight:700;
+        }
+
+        /* --- MOBİL MENÜ TOGGLE (HAMBURGER) --- */
+        .mobile-toggle {
+            display: none; cursor: pointer; z-index: 1002;
+        }
+        .bar {
+            width: 30px; height: 3px; background: #fff; margin: 6px 0;
+            transition: 0.4s; border-radius: 2px;
+        }
+        /* Hamburger Animasyonu */
+        .mobile-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); background: var(--primary); }
+        .mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .mobile-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); background: var(--primary); }
+
+        /* --- MOBİL MENÜ İÇERİK (YUKARIDAN AÇILIR) --- */
+        .mobile-menu-overlay {
+            position: fixed; top: -100%; left: 0; width: 100%; height: 100vh;
+            background: rgba(0,0,0,0.98); backdrop-filter: blur(20px);
+            z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: top 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .mobile-menu-overlay.active { top: 0; }
+        
+        .mobile-menu-links { width: 100%; max-width: 400px; padding: 0 20px; }
+        .mobile-menu-links li { margin: 15px 0; text-align: center; }
+        .mobile-menu-links > li > a { 
+            font-size: 1.8rem; font-weight: 700; color: #fff; text-transform: uppercase; display: block;
+        }
+        .mobile-menu-links > li > a:hover { color: var(--primary); letter-spacing: 2px; }
+
+        /* MOBİL DROPDOWN (HİZMETLER) */
+        .mobile-dropdown-content {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
+            background: rgba(255,255,255,0.03); border-radius: 15px; margin-top: 10px;
+        }
+        .mobile-dropdown-content.active { max-height: 400px; }
+        
+        .mobile-dropdown-content a {
+            display: block; padding: 12px; font-size: 1.1rem; color: #bbb !important; 
+            text-transform: capitalize; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 400;
+        }
+        .mobile-dropdown-content a:last-child { border-bottom: none; }
+        .arrow-icon { transition: transform 0.3s; display: inline-block; }
+        .mobile-dropdown-btn.active .arrow-icon { transform: rotate(180deg); color: var(--primary); }
+
+        /* MOBİL TEKLİF AL BUTONU */
+        .mobile-cta-btn {
+            background: var(--primary) !important;
+            color: #fff !important;
+            padding: 15px 40px;
+            border-radius: 50px;
+            margin-top: 25px;
+            font-size: 1.2rem !important;
+            box-shadow: 0 10px 30px rgba(211, 47, 47, 0.4);
+            display: inline-block;
+        }
+        .mobile-cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(211, 47, 47, 0.6);
+        }
+
+        /* --- HERO --- */
+        .ref-hero {
+            height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; background: radial-gradient(circle at center, #1a0505, #000); padding-top: 100px;
+        }
+        .ref-hero h1 { font-size: 4rem; font-family: 'Playfair Display', serif; margin-bottom: 20px; }
+        .ref-hero p { color: #888; max-width: 600px; font-size: 1.1rem; }
+
+        /* --- YENİ SLIDER YAPISI (SWIPER) --- */
+        .portfolio-slider-section {
+            padding: 50px 0 100px; overflow: hidden;
+        }
+        .swiper {
+            width: 100%;
+            padding-bottom: 50px !important;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 300px; /* Kart Genişliği */
+            height: 380px; /* Kart Yüksekliği */
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #222;
+            position: relative;
+            transition: 0.3s;
+        }
+        /* Hover Efekti */
+        .swiper-slide:hover { transform: translateY(-10px); border-color: var(--primary); }
+        
+        .p-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .swiper-slide:hover .p-img { transform: scale(1.1); filter: grayscale(100%); }
+
+        .p-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); /* Hafif karanlık */
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+            opacity: 0; transition: 0.3s;
+        }
+        .swiper-slide:hover .p-overlay { opacity: 1; }
+
+        .p-title { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 5px; transform: translateY(20px); transition: 0.4s; }
+        .p-cat { color: var(--primary); font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; transform: translateY(20px); transition: 0.4s 0.1s; }
+        
+        .swiper-slide:hover .p-title, .swiper-slide:hover .p-cat { transform: translateY(0); }
+
+        /* --- VIDEO TESTIMONIALS --- */
+        .video-reviews {
+            padding: 100px 5%; background: #080808; border-top: 1px solid #111;
+        }
+        .vr-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px;
+        }
+        .vr-item {
+            position: relative; border-radius: 20px; overflow: hidden; cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 1px solid #222;
+            transition: 0.4s; height: 400px; background: #000;
+        }
+        .vr-item:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 0 40px rgba(211, 47, 47, 0.4); border-color: var(--primary); }
+        .vr-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
+        .vr-item:hover .vr-video { opacity: 1; }
+        .vr-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px;
+            background: linear-gradient(to top, #000, transparent); pointer-events: none;
+        }
+        .vr-name { font-size: 1.2rem; font-weight: 700; color: #fff; }
+        .vr-role { font-size: 0.9rem; color: var(--primary); }
+        .play-icon {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 3rem; color: #fff; opacity: 0; transition: 0.3s; z-index: 5;
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+        .vr-item:hover .play-icon { opacity: 1; }
+
+        /* --- CINEMATIC MODAL --- */
+        .cine-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 99999;
+            display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px);
+        }
+        .cine-modal.active { display: flex; animation: fadeIn 0.3s; }
+        .cine-video-wrapper {
+            width: 100%; max-width: 400px; max-height: 70vh; aspect-ratio: 9/16; 
+            position: relative; box-shadow: 0 0 80px rgba(211, 47, 47, 0.3);
+            border-radius: 20px; overflow: hidden; background: #000;
+        }
+        .cine-video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
+        .cine-close {
+            position: absolute; top: 20px; right: 20px; color: #fff; font-size: 2rem; 
+            cursor: pointer; z-index: 10; background: rgba(0,0,0,0.5); padding: 5px 15px; border-radius: 50%;
+        }
+        
+        footer { background: #000; padding: 40px; text-align: center; color: #444; border-top: 1px solid #111; }
+
+        @media (max-width: 992px) {
+            .desktop-nav, .cta-btn-header { display: none !important; }
+            .mobile-toggle { display: block; }
+            .logo img { height: 70px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cine-modal" id="cineModal">
+        <div class="cine-close" onclick="closeCinematic()">&times;</div>
+        <div class="cine-video-wrapper">
+            <video id="cinePlayer" controls controlsList="nodownload">
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <ul class="mobile-menu-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            
+            <li>
+                <a href="javascript:void(0)" class="mobile-dropdown-btn" onclick="toggleSubMenu()">
+                    Hizmetler <i class="fas fa-chevron-down arrow-icon" style="font-size: 1rem; margin-left: 10px;"></i>
+                </a>
+                <div class="mobile-dropdown-content" id="mobileSubMenu">
+                    <a href="web-tasarim.html">Web Tasarım</a>
+                    <a href="grafik-tasarim.html">Grafik Tasarım</a>
+                    <a href="dijital-pazarlama.html">Dijital Pazarlama</a>
+                    <a href="diger-hizmetler.html">Diğer Hizmetler</a>
+                </div>
+            </li>
+            
+            <li><a href="referanslar.html" style="color:var(--primary);">Referanslar</a></li>
+            <li><a href="index.html#iletisim" onclick="toggleMobileMenu()">İletişim</a></li>
+
+            <li style="margin-top: 20px;">
+                <a href="index.html#iletisim" onclick="toggleMobileMenu()" class="mobile-cta-btn">TEKLİF AL</a>
+            </li>
+        </ul>
+    </div>
+
+    <header id="header">
+        <div class="logo">
+            <a href="index.html"><img src="src/logo.png" alt="Logo"></a>
+        </div>
+        
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li style="position:relative;">
+                    <a href="#">Hizmetler <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-top:2px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="web-tasarim.html">Web Tasarım</a></li>
+                        <li><a href="grafik-tasarim.html">Grafik Tasarım</a></li>
+                        <li><a href="dijital-pazarlama.html">Dijital Pazarlama</a></li>
+                        <li><a href="diger-hizmetler.html">Diğer Hizmetler</a></li>
+                    </ul>
+                </li>
+                <li><a href="referanslar.html" style="color:var(--primary);">Referanslar</a></li>
+                <li><a href="index.html#iletisim">İletişim</a></li>
+            </ul>
+        </nav>
+        <a href="index.html#iletisim" class="cta-btn-header">Teklif Al</a>
+
+        <div class="mobile-toggle" onclick="toggleMobileMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+
+    <section class="ref-hero">
+        <h1 data-aos="fade-up">Gurur Tablomuz</h1>
+        <p data-aos="fade-up" data-aos-delay="100">Birlikte büyüdüğümüz, dijital dönüşümüne eşlik ettiğimiz markalar.</p>
+    </section>
+
+    <section class="portfolio-slider-section">
+        
+        <div style="margin-bottom: 50px;">
+            <div class="swiper mySwiper1">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="src/referance/1.png" class="p-img">
+                        <div class="p-overlay"><h3 class="p-title">Permanent Nail Beauty</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/2.png" class="p-img">
+                        <div class="p-overlay"><h3 class="p-title">Cüneyt Aysel <br> Hair Studio & Nail Saloon</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/3.png" class="p-img">
+                        <div class="p-overlay"><h3 class="p-title">Ayşegül Aydın Güzellik Merkezi</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/4.png" class="p-img">
+                        <div class="p-overlay"><h3 class="p-title">Leyla Zabitova</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/5.png" class="p-img">
+                        <div class="p-overlay"><h3 class="p-title">Epiland <br> Lazer Epilasyon ve Güzellik Merkezi</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/6.png" class="p-img">
+                        <div class="p-overlay"><h3 class="p-title">Kadıköy Royal Güzellik Merkezi</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/7.png" class="p-img">
+                        <div class="p-overlay"><h3 class="p-title">Dünyamed Güzellik Salonları</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/8.png" class="p-img">
+                        <div class="p-overlay"><h3 class="p-title">Lariva Güzellik</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/9.png" class="p-img">
+                        <div class="p-overlay"><h3 class="p-title">Sirius Clinic</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/10.png" class="p-img">
+                        <div class="p-overlay"><h3 class="p-title">Makeup & Hair Studyo <br> Tamara Yusuf</h3><span class="p-cat"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div dir="rtl"> <div class="swiper mySwiper2">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="src/referance/21.png" class="p-img">
+                        <div class="p-overlay" dir="ltr"><h3 class="p-title">Burcu Beauty Box</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/22.png" class="p-img">
+                        <div class="p-overlay" dir="ltr"><h3 class="p-title">Ayşenur Bozak <br> Güzellik ve Yaşam Merkezi</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/13.png" class="p-img">
+                        <div class="p-overlay" dir="ltr"><h3 class="p-title">Rosh Beauty</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/14.png" class="p-img">
+                        <div class="p-overlay" dir="ltr"><h3 class="p-title">Guzmania <br> Güzellik Merkezi</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/15.png" class="p-img">
+                        <div class="p-overlay" dir="ltr"><h3 class="p-title">Tuğçe Çetin Beauty</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/16.png" class="p-img">
+                        <div class="p-overlay" dir="ltr"><h3 class="p-title">Esteneva</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/17.png" class="p-img">
+                        <div class="p-overlay" dir="ltr"><h3 class="p-title">Medikalipo Güzellik Merkezi</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/18.png" class="p-img">
+                        <div class="p-overlay" dir="ltr"><h3 class="p-title">Dermo Filler</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/19.png" class="p-img">
+                        <div class="p-overlay" dir="ltr"><h3 class="p-title">Dermo Beauty <br> Europe</h3><span class="p-cat"></span></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="src/referance/20.png" class="p-img">
+                        <div class="p-overlay" dir="ltr"><h3 class="p-title">Mea Güzellik</h3><span class="p-cat"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="video-reviews">
+        <div style="text-align:center;" data-aos="fade-up">
+            <h2 style="font-size:3rem; margin-bottom:10px;">Onlar Bize Güvendi</h2>
+            <p style="color:#666;">Müşterilerimizin kendi ağzından başarı hikayeleri.</p>
+        </div>
+
+        <div class="vr-grid">
+            <div class="vr-item" data-aos="zoom-in" onclick="openCinematic('src/video1.mp4')">
+                <video class="vr-video" autoplay muted loop playsinline>
+                    <source src="src/video1.mp4" type="video/mp4">
+                </video>
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+                <div class="vr-overlay">
+                    <div class="vr-name">Ayşegül Aydın Güzellik Merkezi</div>
+                    <div class="vr-role"> </div>
+                </div>
+            </div>
+
+            <div class="vr-item" data-aos="zoom-in" data-aos-delay="100" onclick="openCinematic('src/video2.mp4')">
+                <video class="vr-video" autoplay muted loop playsinline>
+                    <source src="src/video2.mp4" type="video/mp4">
+                </video>
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+                <div class="vr-overlay">
+                    <div class="vr-name">Cüneyt Aysel Hair Studio & Nail Saloon</div>
+                    <div class="vr-role"></div>
+                </div>
+            </div>
+
+            <div class="vr-item" data-aos="zoom-in" data-aos-delay="200" onclick="openCinematic('src/video3.mp4')">
+                <video class="vr-video" autoplay muted loop playsinline>
+                    <source src="src/video3.mp4" type="video/mp4">
+                </video>
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+                <div class="vr-overlay">
+                    <div class="vr-name">Kadıköy Royal</div>
+                    <div class="vr-role"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Çözüm Creative | Kreatif Ajans</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // MOBİL MENÜ FONKSİYONLARI
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-toggle');
+            menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        function toggleSubMenu() {
+            const subMenu = document.getElementById('mobileSubMenu');
+            const btn = document.querySelector('.mobile-dropdown-btn');
+            subMenu.classList.toggle('active');
+            btn.classList.toggle('active');
+        }
+
+        // Header Scroll Efekti
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if(window.scrollY > 50) header.style.background = 'rgba(0,0,0,0.98)';
+            else header.style.background = 'rgba(5,5,5,0.95)';
+        });
+
+        // --- SİNEMATİK VIDEO MODAL SCRIPT ---
+        const cineModal = document.getElementById('cineModal');
+        const cinePlayer = document.getElementById('cinePlayer');
+
+        function openCinematic(videoFile) {
+            cinePlayer.src = videoFile;
+            cineModal.classList.add('active');
+            cinePlayer.play();
+        }
+
+        function closeCinematic() {
+            cineModal.classList.remove('active');
+            cinePlayer.pause();
+            cinePlayer.currentTime = 0;
+            cinePlayer.src = "";
+        }
+
+        cineModal.addEventListener('click', function(e) {
+            if (e.target === cineModal) { closeCinematic(); }
+        });
+
+        // --- SWIPER SLIDER AYARLARI ---
+        var swiper1 = new Swiper(".mySwiper1", {
+            slidesPerView: "auto",
+            spaceBetween: 20,
+            loop: true,
+            speed: 3000, // Akış hızı
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+                1400: { slidesPerView: 5 },
+            }
+        });
+
+        var swiper2 = new Swiper(".mySwiper2", {
+            slidesPerView: "auto",
+            spaceBetween: 20,
+            loop: true,
+            speed: 3500, // Biraz daha yavaş aksın
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+                reverseDirection: true // Ters yöne aksın (RTL ile uyumlu olması için)
+            },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+                1400: { slidesPerView: 5 },
+            }
+        });
+    </script>
+</body>
+</html>
