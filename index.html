@@ -492,9 +492,9 @@
 
         <div class="form-container" data-aos="fade-up" data-aos-delay="100">
             <form id="contactForm">
-                <input type="hidden" name="access_key" value="53409aa6-7ffc-424d-a35c-428005d94913">
-                <input type="hidden" name="subject" value="Web Sitenizden Yeni Mesaj Var!">
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                
+                <input type="hidden" name="_subject" value="Web Sitenizden Yeni Mesaj Var!">
+                <input type="hidden" name="_captcha" value="false"> <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
                     <div class="form-group">
                         <label>Adınız Soyadınız</label>
                         <input type="text" name="name" class="form-control" required>
@@ -525,8 +525,8 @@
         
         <div style="display:flex; justify-content:center; gap:25px; margin-bottom:30px;">
             <a href="https://www.instagram.com/cozumortagim.co/" target="_blank" style="font-size:1.5rem; color:#fff;"><i class="fab fa-instagram"></i></a>
-            <a href="#" style="font-size:1.5rem; color:#fff;"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" style="font-size:1.5rem; color:#fff;"><i class="fab fa-linkedin"></i></a>
+            <a href="https://wa.me/905300249586" target="_blank" style="font-size:1.5rem; color:#fff;"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.linkedin.com/company/%C3%A7%C3%B6z%C3%BCmorta%C4%9F%C4%B1m/" target="_blank" style="font-size:1.5rem; color:#fff;"><i class="fab fa-linkedin"></i></a>
         </div>
         <p style="color:#444; font-size:0.8rem;">&copy; 2025 Tüm Hakları Saklıdır.</p>
     </footer>
@@ -627,29 +627,63 @@
             });
         });
 
-        // İletişim Formu
+        // ----------------------------------------------------------------
+        // İletişim Formu (FORMSUBMIT.CO + AJAX + SWEETALERT)
+        // ----------------------------------------------------------------
         const form = document.getElementById('contactForm');
         const result = document.getElementById('result');
+
         if(form){
              form.addEventListener('submit', function(e) {
-                e.preventDefault();
+                e.preventDefault(); // Sayfa yenilenmesini engelle
+
                 const formData = new FormData(form);
                 const object = Object.fromEntries(formData);
                 const json = JSON.stringify(object);
-                result.innerHTML = "Lütfen bekleyin...";
                 
-                fetch('https://api.web3forms.com/submit', {
-                    method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: json
+                result.innerHTML = "Gönderiliyor...";
+
+                // AŞAĞIDAKİ ADRESE DİKKAT!
+                // 'https://formsubmit.co/ajax/BURAYA_MAIL_ADRESINI_YAZ' kısmını kendi mailinle değiştir.
+                
+                fetch('https://formsubmit.co/ajax/thefurkanakyuz@gmail.com', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
                 })
                 .then(async (response) => {
+                    const jsonResponse = await response.json();
                     if (response.status == 200) {
-                        Swal.fire({ title: 'Harika!', text: 'Mesajınız iletildi.', icon: 'success', background: '#333', color: '#fff' });
-                        result.innerHTML = ""; form.reset();
+                        // Başarılı olursa şık kutucuk (SweetAlert) çıksın
+                        Swal.fire({ 
+                            title: 'Harika!', 
+                            text: 'Mesajınız başarıyla iletildi.', 
+                            icon: 'success', 
+                            background: '#333', 
+                            color: '#fff',
+                            confirmButtonColor: '#d32f2f'
+                        });
+                        result.innerHTML = ""; 
+                        form.reset(); // Formu temizle
                     } else {
-                        Swal.fire({ title: 'Hata!', text: 'Bir sorun oluştu.', icon: 'error', background: '#333', color: '#fff' });
+                        console.log(response);
+                        Swal.fire({ 
+                            title: 'Hata!', 
+                            text: 'Bir şeyler ters gitti.', 
+                            icon: 'error', 
+                            background: '#333', 
+                            color: '#fff' 
+                        });
+                        result.innerHTML = jsonResponse.message;
                     }
                 })
-                .catch(error => { result.innerHTML = "Hata oluştu!"; });
+                .catch(error => {
+                    console.log(error);
+                    result.innerHTML = "Bir hata oluştu!";
+                });
             });
         }
     </script>
