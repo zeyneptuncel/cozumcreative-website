@@ -37,7 +37,7 @@
         .b2 { bottom: 10%; right: -5%; background: #b71c1c; animation-duration: 15s; }
         @keyframes moveArt { 0% { transform: translate(0,0); } 100% { transform: translate(50px, 50px); } }
 
-        /* --- HEADER & NAV (Mobil Uyumlu) --- */
+        /* --- HEADER & NAV (GÜNCELLENDİ) --- */
         header {
             position: fixed; top: 0; width: 100%; padding: 15px 5%; 
             display: flex; justify-content: space-between; align-items: center;
@@ -53,16 +53,75 @@
         .desktop-nav a { color: #fff; font-weight: 600; font-size: 0.95rem; opacity: 0.8; }
         .desktop-nav a:hover { color: var(--primary); opacity: 1; }
         
+        /* --- PREMIUM DROPDOWN + GÖRÜNMEZ KÖPRÜ (Mouse Kaçırmaz) --- */
         .dropdown-menu {
-            position: absolute; top: 100%; left: 0; width: 240px;
-            background: rgba(10, 10, 10, 0.95); border: 1px solid rgba(255,255,255,0.1); 
-            border-top: 3px solid var(--primary);
-            padding: 10px 0; opacity: 0; visibility: hidden; transform: translateY(20px);
-            transition: all 0.4s ease; display: flex; flex-direction: column;
+            position: absolute; 
+            top: 100%; 
+            left: 0; 
+            min-width: 240px;
+            
+            /* Glassmorphism */
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            
+            padding: 10px;
+            display: flex; 
+            flex-direction: column;
+            gap: 5px;
+            
+            /* Animasyon */
+            opacity: 0; 
+            visibility: hidden; 
+            transform: translateY(15px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 9999;
         }
-        .desktop-nav li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .dropdown-menu a { padding: 15px 20px; color: #ccc !important; border-left: 3px solid transparent; }
-        .dropdown-menu a:hover { background: rgba(211,47,47,0.1); border-left: 3px solid var(--primary); color: #fff !important; }
+
+        /* GÖRÜNMEZ KÖPRÜ */
+        .dropdown-menu::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: transparent;
+            display: block;
+        }
+
+        /* Tetikleyici */
+        .desktop-nav li:hover .dropdown-menu { 
+            opacity: 1; 
+            visibility: visible; 
+            transform: translateY(10px); 
+            pointer-events: auto; 
+        }
+
+        /* Link Stilleri */
+        .dropdown-menu a { 
+            padding: 12px 16px; 
+            color: #e0e0e0 !important; 
+            border-radius: 8px; 
+            transition: all 0.3s ease; 
+            display: flex; 
+            align-items: center; 
+            font-weight: 500;
+            border-left: none; 
+        }
+        .dropdown-menu a:hover { 
+            background: rgba(211,47,47,0.15); 
+            color: #ff6b6b !important; 
+            transform: translateX(5px);
+            padding-left: 16px;
+        }
+        .dropdown-menu i { margin-right: 12px; color: var(--primary); transition: transform 0.3s ease; font-size: 1.1em; }
+        .dropdown-menu a:hover i { transform: scale(1.15); }
+
 
         .cta-btn-header {
             background:#fff; color:#000; padding:10px 25px; border-radius:50px; font-weight:700;
@@ -76,12 +135,11 @@
             width: 30px; height: 3px; background: #fff; margin: 6px 0;
             transition: 0.4s; border-radius: 2px;
         }
-        /* Hamburger Animasyonu */
         .mobile-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); background: var(--primary); }
         .mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
         .mobile-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); background: var(--primary); }
 
-        /* --- MOBİL MENÜ İÇERİK (YUKARIDAN AÇILIR) --- */
+        /* --- MOBİL MENÜ İÇERİK --- */
         .mobile-menu-overlay {
             position: fixed; top: -100%; left: 0; width: 100%; height: 100vh;
             background: rgba(0,0,0,0.98); backdrop-filter: blur(20px);
@@ -97,7 +155,7 @@
         }
         .mobile-menu-links > li > a:hover { color: var(--primary); letter-spacing: 2px; }
 
-        /* MOBİL DROPDOWN (HİZMETLER) */
+        /* MOBİL DROPDOWN */
         .mobile-dropdown-content {
             max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
             background: rgba(255,255,255,0.03); border-radius: 15px; margin-top: 10px;
@@ -109,6 +167,8 @@
             text-transform: capitalize; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 400;
         }
         .mobile-dropdown-content a:last-child { border-bottom: none; }
+        .mobile-dropdown-content a:hover { color: #fff !important; background: rgba(211,47,47,0.1); padding-left: 20px; }
+
         .arrow-icon { transition: transform 0.3s; display: inline-block; }
         .mobile-dropdown-btn.active .arrow-icon { transform: rotate(180deg); color: var(--primary); }
 
@@ -181,6 +241,14 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
         
+        /* MASAÜSTÜ HOVER EFEKTLERİ */
+        @media (min-width: 993px) {
+            .gallery-item:hover { border-color: var(--primary); transform: scale(0.98); }
+            .gallery-item:hover .g-img { transform: scale(1.1); filter: grayscale(0%); }
+            .gallery-item:hover .g-overlay { background: rgba(211,47,47,0.2); }
+            .gallery-item:hover .g-title, .gallery-item:hover .g-desc { transform: translateY(0); opacity: 1; }
+        }
+        
         .g-img { width: 100%; height: 100%; object-fit: cover; transition: 0.7s; filter: grayscale(100%); }
         
         .g-overlay {
@@ -188,27 +256,9 @@
             background: rgba(0,0,0,0.4); display: flex; flex-direction: column;
             justify-content: flex-end; padding: 30px; transition: 0.4s;
         }
-
-        .g-text-wrap {
-            transform-origin: center;
-        }
         
-        /* MASAÜSTÜ HOVER EFEKTLERİ */
-        @media (min-width: 993px) {
-            .gallery-item:hover { border-color: var(--primary); transform: scale(0.98); }
-            .gallery-item:hover .g-img { transform: scale(1.1); filter: grayscale(0%); }
-            .gallery-item:hover .g-overlay { background: rgba(211,47,47,0.2); }
-            .gallery-item:hover .g-title, .gallery-item:hover .g-desc { transform: translateY(0); opacity: 1; }
-             .g-title { font-size: 2rem; font-family: 'Italiana', serif; margin-bottom: 10px; transform: translateY(20px); opacity: 0; transition: 0.4s; }
-            .g-desc { font-size: 0.9rem; color: #ddd; transform: translateY(20px); opacity: 0; transition: 0.4s 0.1s; }
-        }
-
-        /* MOBİLDE YAZI STİLLERİ */
-        @media (max-width: 992px) {
-            .g-title { font-size: 2rem; font-family: 'Italiana', serif; margin-bottom: 10px; }
-            .g-desc { font-size: 0.9rem; color: #ddd; }
-            .g-text-wrap { opacity: 0; } 
-        }
+        .g-title { font-size: 2rem; font-family: 'Italiana', serif; margin-bottom: 10px; transform: translateY(20px); opacity: 0; transition: 0.4s; }
+        .g-desc { font-size: 0.9rem; color: #ddd; transform: translateY(20px); opacity: 0; transition: 0.4s 0.1s; }
         
         .item-1 { grid-column: span 2; grid-row: span 2; }
         .item-2 { grid-row: span 1; }
@@ -259,49 +309,42 @@
             .desktop-nav, .cta-btn-header { display: none !important; }
             .mobile-toggle { display: block; }
 
-            /* Mobilde yazıları ortaya alalım */
-            .gallery-item .g-overlay {
-                justify-content: center; 
-                align-items: center; 
-                text-align: center; 
-                background: rgba(0,0,0,0.3); /* Varsayılan koyuluk */
+            /* ANİMASYON SENARYOSU */
+            @keyframes imageCycle {
+                0%, 25% { filter: grayscale(100%); transform: scale(1); }    /* Başlangıç Gri */
+                30%, 55% { filter: grayscale(0%); transform: scale(1.05); }   /* Renklenir */
+                60%, 100% { filter: grayscale(100%); transform: scale(1); }  /* Tekrar Grileşir */
             }
 
-            /* 1. RESİM ANİMASYONU (8 Saniye) */
-            @keyframes imageCycleExtended {
-                0%   { filter: grayscale(100%); transform: scale(1); }    /* Gri */
-                20%  { filter: grayscale(0%);   transform: scale(1.05);}  /* Renkli (Kısa sürsün) */
-                35%  { filter: grayscale(100%); transform: scale(1); }    /* Tekrar Gri */
-                100% { filter: grayscale(100%); transform: scale(1); }    /* Döngü bitene kadar Gri kal */
+            @keyframes textCycle {
+                0%, 55% { opacity: 0; transform: translateY(20px); }        /* Renkli ve ilk gri kısımda yazı yok */
+                60%, 95% { opacity: 1; transform: translateY(0); }          /* 2. Gri kısımda yazı çıkar */
+                100% { opacity: 0; transform: translateY(20px); }           /* Başa dönerken kaybolur */
             }
 
-            /* 2. YAZI ANİMASYONU (Okuma süresi artırıldı) */
-            @keyframes textZoomReadability {
-                0%, 35% { opacity: 0; transform: scale(0.5); }           /* Gizli */
-                40%     { opacity: 1; transform: scale(1.2); }           /* BAM! Ortaya çıkış */
-                45%, 80% { opacity: 1; transform: scale(1); }            /* UZUN SÜRE DUR (Okuma Payı) */
-                90%, 100% { opacity: 0; transform: scale(0.9); }         /* Yavaşça sön */
+            @keyframes overlayCycle {
+                0%, 55% { background: rgba(0,0,0,0.1); }
+                60%, 100% { background: rgba(211,47,47,0.3); } /* Yazı çıkınca kırmızı filtre gelsin */
             }
 
-            /* 3. EKRAN KARARMA ANİMASYONU (Okunabilirlik için) */
-            @keyframes overlayDarken {
-                0%, 35%  { background: rgba(0,0,0,0.3); }                /* Normal koyuluk */
-                40%, 80% { background: rgba(0,0,0,0.75); }               /* YAZI GELİNCE İYİCE KARAR (Okunabilirlik) */
-                100%     { background: rgba(0,0,0,0.3); }                /* Normale dön */
-            }
-
-            /* Animasyonları Ata */
+            /* Bu animasyonlar sadece ekrana giren (aos-animate) öğelerde çalışsın */
             .gallery-item.aos-animate .g-img {
-                animation: imageCycleExtended 8s infinite ease-in-out;
-            }
-
-            .gallery-item.aos-animate .g-text-wrap {
-                animation: textZoomReadability 8s infinite ease-in-out;
+                animation: imageCycle 6s infinite ease-in-out;
             }
 
             .gallery-item.aos-animate .g-overlay {
-                animation: overlayDarken 8s infinite ease-in-out;
+                animation: overlayCycle 6s infinite ease-in-out;
             }
+
+            .gallery-item.aos-animate .g-title, 
+            .gallery-item.aos-animate .g-desc {
+                animation: textCycle 6s infinite ease-in-out;
+            }
+            
+            /* Her kutuya hafif gecikme verelim ki hepsi aynı anda yanıp sönmesin, daha organik dursun */
+            .item-2.aos-animate .g-img, .item-2.aos-animate .g-overlay, .item-2.aos-animate .g-title { animation-delay: 1s; }
+            .item-3.aos-animate .g-img, .item-3.aos-animate .g-overlay, .item-3.aos-animate .g-title { animation-delay: 2s; }
+            .item-4.aos-animate .g-img, .item-4.aos-animate .g-overlay, .item-4.aos-animate .g-title { animation-delay: 3s; }
         }
     </style>
 </head>
@@ -313,6 +356,7 @@
     <div class="mobile-menu-overlay" id="mobileMenu">
         <ul class="mobile-menu-links">
             <li><a href="index.html">Ana Sayfa</a></li>
+            
             <li>
                 <a href="javascript:void(0)" class="mobile-dropdown-btn" onclick="toggleSubMenu()">
                     Hizmetler <i class="fas fa-chevron-down arrow-icon" style="font-size: 1rem; margin-left: 10px;"></i>
@@ -324,8 +368,10 @@
                     <a href="diger-hizmetler.html">Diğer Hizmetler</a>
                 </div>
             </li>
+            
             <li><a href="referanslar.html">Referanslar</a></li>
             <li><a href="index.html#iletisim" onclick="toggleMobileMenu()">İletişim</a></li>
+
             <li style="margin-top: 20px;">
                 <a href="index.html#iletisim" onclick="toggleMobileMenu()" class="mobile-cta-btn">TEKLİF AL</a>
             </li>
@@ -336,6 +382,7 @@
         <div class="logo">
             <a href="index.html"><img src="src/logo.png" alt="Logo"></a>
         </div>
+        
         <nav class="desktop-nav">
             <ul>
                 <li><a href="index.html">Ana Sayfa</a></li>
@@ -353,6 +400,7 @@
             </ul>
         </nav>
         <a href="index.html#iletisim" class="cta-btn-header">Teklif Al</a>
+
         <div class="mobile-toggle" onclick="toggleMobileMenu()">
             <div class="bar"></div>
             <div class="bar"></div>
@@ -382,40 +430,32 @@
             <div class="gallery-item item-1" data-aos="fade-up">
                 <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000" class="g-img" alt="Branding">
                 <div class="g-overlay">
-                    <div class="g-text-wrap">
-                        <div class="g-title">Kurumsal Kimlik</div>
-                        <div class="g-desc">Logo, renk paleti ve markanızın tüm görsel dili.</div>
-                    </div>
+                    <div class="g-title">Kurumsal Kimlik</div>
+                    <div class="g-desc">Logo, renk paleti ve markanızın tüm görsel dili.</div>
                 </div>
             </div>
 
             <div class="gallery-item item-2" data-aos="fade-up" data-aos-delay="100">
                 <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=1974&auto=format&fit=crop" class="g-img" alt="Social">
                 <div class="g-overlay">
-                    <div class="g-text-wrap">
-                        <div class="g-title">Sosyal Medya</div>
-                        <div class="g-desc">Instagram için scroll durduran tasarımlar.</div>
-                    </div>
+                    <div class="g-title">Sosyal Medya</div>
+                    <div class="g-desc">Instagram için scroll durduran tasarımlar.</div>
                 </div>
             </div>
 
             <div class="gallery-item item-3" data-aos="fade-up" data-aos-delay="200">
                 <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?q=80&w=1974&auto=format&fit=crop" class="g-img" alt="Packaging">
                 <div class="g-overlay">
-                    <div class="g-text-wrap">
-                        <div class="g-title">Ambalaj Tasarımı</div>
-                        <div class="g-desc">Ürününüz rafta parlasın.</div>
-                    </div>
+                    <div class="g-title">Ambalaj Tasarımı</div>
+                    <div class="g-desc">Ürününüz rafta parlasın.</div>
                 </div>
             </div>
 
             <div class="gallery-item item-4" data-aos="fade-up">
                 <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070" class="g-img" alt="UI/UX">
                 <div class="g-overlay">
-                    <div class="g-text-wrap">
-                        <div class="g-title">Arayüz Tasarımı (UI/UX)</div>
-                        <div class="g-desc">Web ve mobil uygulamalar için kullanıcı dostu, modern arayüzler.</div>
-                    </div>
+                    <div class="g-title">Arayüz Tasarımı (UI/UX)</div>
+                    <div class="g-desc">Web ve mobil uygulamalar için kullanıcı dostu, modern arayüzler.</div>
                 </div>
             </div>
         </div>
