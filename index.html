@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Çözüm Creative | Kreatif Dijital Ajans</title>
     
+    <title>Çözüm Creative | Web Tasarım & Dijital Pazarlama Ajansı</title>
+    <meta name="description" content="Markanızı zirveye taşıyan kreatif çözümler. Kocaeli ve Gebze web tasarım, sosyal medya yönetimi, grafik tasarım ve SEO hizmetleri. Profesyonel dijital ajans.">
+    <meta name="keywords" content="web tasarım, dijital pazarlama, grafik tasarım, seo, kocaeli reklam ajansı, gebze web tasarım, sosyal medya yönetimi, çözüm creative">
+    <meta name="author" content="Zeynep Tuncel">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="Çözüm Creative | Dijital Estetik & Güç">
+    <meta property="og:description" content="İşletmenizi dijital dünyada büyütüyoruz. Modern web tasarım ve stratejik pazarlama çözümleri.">
+    <meta property="og:image" content="https://zeyneptuncel.github.io/cozumcreative-website/src/logo.png">
+    <meta property="og:url" content="https://zeyneptuncel.github.io/cozumcreative-website/">
+    <meta property="og:type" content="website">
+
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,600;1,600&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -89,152 +98,67 @@
         .desktop-nav a { color: #fff; font-weight: 600; font-size: 0.95rem; opacity: 0.9; }
         .desktop-nav a:hover { color: var(--primary); opacity: 1; }
 
-        /* --- GÜNCELLENMİŞ DROPDOWN (Kapanma Sorunu Çözüldü) --- */
+        /* DROPDOWN */
         .dropdown-menu {
-            position: absolute; 
-            top: 100%; /* Tam butonun bittiği yerden başla */
-            left: 0; 
-            min-width: 240px;
-            
-            /* Görünüm Ayarları */
-            background: rgba(15, 15, 15, 0.95); /* Biraz daha koyu yaptım okunaklı olsun */
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 12px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-            
-            padding: 10px;
-            display: flex; 
-            flex-direction: column;
-            gap: 5px;
-            
-            /* Animasyon */
-            opacity: 0; 
-            visibility: hidden; 
-            transform: translateY(15px); /* Aşağıdan gelme efekti */
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-            
-            /* Z-Index'i artırdık ki diğer öğelerin üstünde kalsın */
-            z-index: 9999;
+            position: absolute; top: 100%; left: 0; min-width: 240px;
+            background: rgba(15, 15, 15, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); padding: 10px;
+            display: flex; flex-direction: column; gap: 5px;
+            opacity: 0; visibility: hidden; transform: translateY(15px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; z-index: 9999;
         }
-
-        /* --- İŞTE SİHİRLİ DOKUNUŞ (Görünmez Köprü) --- */
         .dropdown-menu::before {
-            content: "";
-            position: absolute;
-            top: -30px; /* Menünün 30px yukarısına kadar görünmez alan yaratır */
-            left: 0;
-            width: 100%;
-            height: 30px; /* Boşluğu doldurur */
-            background: transparent; /* Görünmezdir */
-            display: block;
+            content: ""; position: absolute; top: -30px; left: 0; width: 100%; height: 30px; background: transparent; display: block;
         }
-
-        /* Hover Olduğunda */
         .desktop-nav li:hover .dropdown-menu { 
-            opacity: 1; 
-            visibility: visible; 
-            transform: translateY(10px); /* Aradaki boşluğu biraz azalttım */
-            pointer-events: auto;
+            opacity: 1; visibility: visible; transform: translateY(10px); pointer-events: auto;
         }
-
-        /* Link Stilleri */
         .dropdown-menu a { 
-            padding: 12px 16px; 
-            color: #e0e0e0 !important; 
-            border-radius: 8px; 
-            transition: all 0.3s ease; 
-            display: flex; 
-            align-items: center; 
-            font-weight: 500;
-            border-left: none;
+            padding: 12px 16px; color: #e0e0e0 !important; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; font-weight: 500; border-left: none;
         }
-
         .dropdown-menu a:hover { 
-            background: rgba(211, 47, 47, 0.15); 
-            color: #ff6b6b !important; 
-            transform: translateX(5px); 
-            padding-left: 16px; 
+            background: rgba(211, 47, 47, 0.15); color: #ff6b6b !important; transform: translateX(5px); padding-left: 16px; 
         }
-
-        .dropdown-menu i {
-            margin-right: 12px;
-            color: var(--primary);
-            transition: transform 0.3s ease;
-            font-size: 1.1em;
-        }
-
-        .dropdown-menu a:hover i {
-            transform: scale(1.15); 
-        }
-
+        .dropdown-menu i { margin-right: 12px; color: var(--primary); transition: transform 0.3s ease; font-size: 1.1em; }
+        .dropdown-menu a:hover i { transform: scale(1.15); }
 
         .cta-btn-header {
             background:#fff; color:#000; padding:10px 25px; border-radius:50px; font-weight:700;
         }
 
-        /* --- MOBİL MENÜ TOGGLE (HAMBURGER) --- */
-        .mobile-toggle {
-            display: none; cursor: pointer; z-index: 1002;
-        }
-        .bar {
-            width: 30px; height: 3px; background: #fff; margin: 6px 0;
-            transition: 0.4s; border-radius: 2px;
-        }
-        /* Hamburger Animasyonu */
+        /* --- MOBİL MENÜ --- */
+        .mobile-toggle { display: none; cursor: pointer; z-index: 1002; }
+        .bar { width: 30px; height: 3px; background: #fff; margin: 6px 0; transition: 0.4s; border-radius: 2px; }
         .mobile-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); background: var(--primary); }
         .mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
         .mobile-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); background: var(--primary); }
 
-        /* --- MOBİL MENÜ İÇERİK --- */
         .mobile-menu-overlay {
             position: fixed; top: -100%; left: 0; width: 100%; height: 100vh;
             background: rgba(0,0,0,0.98); backdrop-filter: blur(20px);
             z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: top 0.6s cubic-bezier(0.77, 0, 0.175, 1); /* Slide down efekti */
+            transition: top 0.6s cubic-bezier(0.77, 0, 0.175, 1);
         }
         .mobile-menu-overlay.active { top: 0; }
-        
         .mobile-menu-links { width: 100%; max-width: 400px; padding: 0 20px; }
         .mobile-menu-links li { margin: 15px 0; text-align: center; }
-        .mobile-menu-links > li > a { 
-            font-size: 1.8rem; font-weight: 700; color: #fff; text-transform: uppercase; display: block;
-        }
+        .mobile-menu-links > li > a { font-size: 1.8rem; font-weight: 700; color: #fff; text-transform: uppercase; display: block; }
         .mobile-menu-links > li > a:hover { color: var(--primary); letter-spacing: 2px; }
 
-        /* MOBİL DROPDOWN (HİZMETLER) */
         .mobile-dropdown-content {
             max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
             background: rgba(255,255,255,0.03); border-radius: 15px; margin-top: 10px;
         }
         .mobile-dropdown-content.active { max-height: 400px; }
-        
-        .mobile-dropdown-content a {
-            display: block; padding: 12px; font-size: 1.1rem; color: #bbb !important; 
-            text-transform: capitalize; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 400;
-        }
-        .mobile-dropdown-content a:last-child { border-bottom: none; }
+        .mobile-dropdown-content a { display: block; padding: 12px; font-size: 1.1rem; color: #bbb !important; text-transform: capitalize; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 400; }
         .mobile-dropdown-content a:hover { color: #fff !important; background: rgba(211,47,47,0.1); padding-left: 20px; }
-        
         .arrow-icon { transition: transform 0.3s; display: inline-block; }
         .mobile-dropdown-btn.active .arrow-icon { transform: rotate(180deg); color: var(--primary); }
-
-        /* MOBİL TEKLİF AL BUTONU */
+        
         .mobile-cta-btn {
-            background: var(--primary) !important;
-            color: #fff !important;
-            padding: 15px 40px;
-            border-radius: 50px;
-            margin-top: 25px;
-            font-size: 1.2rem !important;
-            box-shadow: 0 10px 30px rgba(211, 47, 47, 0.4);
-            display: inline-block;
-        }
-        .mobile-cta-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(211, 47, 47, 0.6);
+            background: var(--primary) !important; color: #fff !important; padding: 15px 40px; border-radius: 50px; margin-top: 25px; font-size: 1.2rem !important;
+            box-shadow: 0 10px 30px rgba(211, 47, 47, 0.4); display: inline-block;
         }
 
         /* --- HERO --- */
@@ -245,8 +169,7 @@
         }
         .video-container {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 85%; height: 80%; z-index: 0;
-            border-radius: 30px; overflow: hidden; box-shadow: 0 0 100px rgba(0,0,0,0.5);
+            width: 85%; height: 80%; z-index: 0; border-radius: 30px; overflow: hidden; box-shadow: 0 0 100px rgba(0,0,0,0.5);
         }
         .video-bg { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85); }
         .vignette-overlay {
@@ -266,8 +189,7 @@
             background-size: 200% auto;
             -webkit-background-clip: text; background-clip: text;
             -webkit-text-fill-color: transparent; color: transparent;
-            animation: shineFlow 6s linear infinite; 
-            font-weight: 900;
+            animation: shineFlow 6s linear infinite; font-weight: 900;
             text-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
         @keyframes shineFlow { to { background-position: 200% center; } }
@@ -284,7 +206,6 @@
         }
         .play-btn-pulse:hover { background: var(--primary); border-color: var(--primary); transform: scale(1.1); box-shadow: 0 0 30px var(--primary); }
 
-        /* --- VIDEO MODAL --- */
         .video-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.98); z-index: 9999; display: none; align-items: center; justify-content: center;
@@ -294,26 +215,19 @@
         .close-modal { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 3rem; cursor: pointer; transition: 0.3s; }
         .close-modal:hover { color: var(--primary); transform: rotate(90deg); }
 
-        /* --- SCROLL TEXT --- */
         .scroll-reveal-section { height: 300vh; position: relative; background: #000; z-index: 10; }
         .sticky-wrapper {
             position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 0 5%;
         }
         .scroll-reveal-text {
             font-family: 'Google Sans', 'Google Sans Flex', 'Outfit', sans-serif;
-            font-size: 3.5rem; 
-            font-weight: 800; 
-            line-height: 1.4; 
-            max-width: 1100px; 
-            text-align: center;
-            font-variation-settings: 'wght' 800, 'wdth' 100;
+            font-size: 3.5rem; font-weight: 800; line-height: 1.4; max-width: 1100px; text-align: center;
         }
         .scroll-reveal-text span {
             color: rgb(255, 255, 255); transition: color 0.1s ease, text-shadow 0.1s ease; display: inline;
         }
         .scroll-reveal-text span.active { color: var(--primary) !important; text-shadow: 0 0 30px rgb(158, 0, 0); }
 
-        /* --- SHOWCASE --- */
         .showcase-section {
             padding: 150px 5%; background: var(--bg-dark); display: flex; align-items: center; gap: 80px; min-height: 100vh; overflow: hidden; perspective: 2000px;
         }
@@ -322,32 +236,22 @@
             box-shadow: 0 50px 100px rgba(0,0,0,0.5), inset 0 0 0 2px #333; margin: 0 auto; position: relative;
             transform: rotateY(20deg) rotateX(10deg); transition: transform 0.1s linear;
         }
-        .camera {
-            position: absolute; top: 25px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: #000; border-radius: 50%; border: 1px solid #444; z-index: 20;
-        }
+        .camera { position: absolute; top: 25px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: #00e676; border-radius: 50%; box-shadow: 0 0 10px #00e676; z-index: 20; }
         .tablet-screen {
             width: 100%; height: 100%; background: #050505; border-radius: 25px; overflow: hidden; position: relative;
             display: flex; flex-direction: column; box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
         }
-        .screen-header {
-            padding: 20px; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; color: #fff; background: rgba(255,255,255,0.02);
-        }
+        .screen-header { padding: 20px; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; color: #fff; background: rgba(255,255,255,0.02); }
         .status-dot { width: 8px; height: 8px; background: #00e676; border-radius: 50%; box-shadow: 0 0 10px #00e676; }
-        .typing-area {
-            flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; font-family: 'Courier New', monospace;
-            background: radial-gradient(circle at top right, rgba(211,47,47,0.1), transparent);
-        }
+        .typing-area { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; font-family: 'Courier New', monospace; background: radial-gradient(circle at top right, rgba(211,47,47,0.1), transparent); }
         .dynamic-text { color: #fff; font-size: 2.2rem; font-weight: 700; line-height: 1.4; }
         .highlight-text { color: var(--primary); text-shadow: 0 0 20px var(--primary); }
-        .screen-footer {
-            padding: 30px; border-top: 1px solid #222; background: rgba(255,255,255,0.02); text-align: center;
-        }
+        .screen-footer { padding: 30px; border-top: 1px solid #222; background: rgba(255,255,255,0.02); text-align: center; }
         .tablet-btn {
             background: linear-gradient(90deg, var(--primary), #b71c1c); color: #fff; padding: 15px 35px; border-radius: 50px; font-weight: 700; display: inline-block;
             box-shadow: 0 10px 30px rgba(211, 47, 47, 0.3); border: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* --- CONTACT --- */
         .contact-section {
             padding: 120px 5%; background: #050505; color: #fff; display: flex; flex-direction: column; align-items: center; position: relative;
         }
@@ -371,13 +275,11 @@
         }
         .submit-btn:hover { background: #fff; color: var(--primary); }
 
-        /* --- FOOTER --- */
         footer { background: #000; color: #fff; padding: 60px 5%; text-align: center; border-top: 1px solid #222; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes pulseWave { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.6); opacity: 0; } }
 
-        /* --- RESPONSIVE AYARLAR --- */
         @media (max-width: 992px) {
             .video-container { width: 95%; height: 60vh; }
             .hero h1 { font-size: 3rem; }
@@ -385,16 +287,8 @@
             .tablet-device { height: 500px; margin-top: 40px; transform: none !important; width: 95%; } 
             .dynamic-text { font-size: 1.5rem; }
             .header-logo-img { height: 70px; } 
-            
-            .scroll-reveal-text { 
-                font-size: 2.5rem; 
-                line-height: 1.3;
-                padding: 0 10px;
-            }
-            
-            /* Mobilde Desktop Menüyü Gizle */
+            .scroll-reveal-text { font-size: 2.5rem; line-height: 1.3; padding: 0 10px; }
             .desktop-nav, .cta-btn-header { display: none !important; }
-            /* Hamburger Menüyü Göster */
             .mobile-toggle { display: block; }
         }
     </style>
@@ -403,14 +297,13 @@
 
     <div class="preloader-container" id="preloader">
         <div class="preloader-logo-wrapper">
-            <img src="src/logo.png" alt="Çözüm Creative Logo" class="preloader-logo">
+            <img src="src/logo.png" alt="Çözüm Creative Dijital Ajans Logosu" class="preloader-logo">
         </div>
     </div>
 
     <div class="mobile-menu-overlay" id="mobileMenu">
         <ul class="mobile-menu-links">
             <li><a href="#" onclick="toggleMobileMenu()">Ana Sayfa</a></li>
-            
             <li>
                 <a href="javascript:void(0)" class="mobile-dropdown-btn" onclick="toggleSubMenu()">
                     Hizmetler <i class="fas fa-chevron-down arrow-icon" style="font-size: 1rem; margin-left: 10px;"></i>
@@ -422,10 +315,8 @@
                     <a href="diger-hizmetler.html">Diğer Hizmetler</a>
                 </div>
             </li>
-            
             <li><a href="referanslar.html">Referanslar</a></li>
             <li><a href="#iletisim" onclick="toggleMobileMenu()">İletişim</a></li>
-            
             <li style="margin-top: 20px;">
                 <a href="#iletisim" onclick="toggleMobileMenu()" class="mobile-cta-btn">TEKLİF AL</a>
             </li>
@@ -441,7 +332,7 @@
 
     <header id="header">
         <div class="logo">
-            <img src="src/logo.png" alt="Logo" class="header-logo-img"> 
+            <img src="src/logo.png" alt="Çözüm Creative - Kocaeli Web Tasarım Ajansı" class="header-logo-img"> 
         </div>
 
         <nav class="desktop-nav">
@@ -486,7 +377,7 @@
                 ESTETİK & GÜÇ
             </h1>
             <p style="color:#ddd; font-size:1.4rem; font-weight:300; margin-bottom:40px;">
-                Güzellik ve estetik sektöründe markanızı zirveye taşıyan, <br> prestijli ve veri odaklı kreatif çözümler.
+                Güzellik ve estetik sektörüne özel <strong>Web Tasarım</strong> ve <strong>Dijital Pazarlama</strong> çözümleri.<br> Markanızı zirveye taşıyan veri odaklı stratejiler.
             </p>
             <div class="play-btn-pulse" onclick="openVideo()">
                 <i class="fas fa-play"></i>
@@ -506,21 +397,21 @@
     <section id="showcase" class="showcase-section">
         <div style="flex:1;" data-aos="fade-right">
             <h2 style="font-size:3.5rem; line-height:1.1; margin-bottom:20px;">
-                Sizin İçin <br> <span style="color:var(--primary);">Neler Yapıyoruz?</span>
+                Profesyonel <br> <span style="color:var(--primary);">Dijital Çözümlerimiz</span>
             </h2>
             <p style="color:#aaa; font-size:1.1rem; margin-bottom:40px; line-height:1.8;">
-                Markanızın dijital dünyadaki beyniyiz. Teknoloji ve estetiği birleştirerek, hedef kitlenize nokta atışı yapıyoruz.
+                Markanızın dijital dünyadaki beyniyiz. Teknoloji ve estetiği birleştirerek, <strong>Gebze</strong> ve <strong>Kocaeli</strong> başta olmak üzere tüm Türkiye'de hedef kitlenize nokta atışı yapıyoruz.
             </p>
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:30px;">
                 <div style="background:#111; padding:25px; border-radius:15px; border:1px solid #222;">
                     <i class="fas fa-rocket" style="font-size:2rem; color:var(--primary); margin-bottom:15px;"></i>
-                    <h4 style="color:#fff;">Hızlı Büyüme</h4>
-                    <p style="font-size:0.9rem; color:#666;">Garantili Etkileşim</p>
+                    <h4 style="color:#fff;">SEO & Hızlı Büyüme</h4>
+                    <p style="font-size:0.9rem; color:#666;">Google'da İlk Sayfa Garantisi</p>
                 </div>
                 <div style="background:#111; padding:25px; border-radius:15px; border:1px solid #222;">
                     <i class="fas fa-magic" style="font-size:2rem; color:var(--primary); margin-bottom:15px;"></i>
-                    <h4 style="color:#fff;">Kreatif İçerik</h4>
-                    <p style="font-size:0.9rem; color:#666;">Özgün Tasarımlar</p>
+                    <h4 style="color:#fff;">Kreatif Web Tasarım</h4>
+                    <p style="font-size:0.9rem; color:#666;">Mobil Uyumlu & Özgün</p>
                 </div>
             </div>
         </div>
@@ -561,9 +452,9 @@
 
         <div class="form-container" data-aos="fade-up" data-aos-delay="100">
             <form id="contactForm">
-                
                 <input type="hidden" name="_subject" value="Web Sitenizden Yeni Mesaj Var!">
-                <input type="hidden" name="_captcha" value="false"> <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                <input type="hidden" name="_captcha" value="false"> 
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
                     <div class="form-group">
                         <label>Adınız Soyadınız</label>
                         <input type="text" name="name" class="form-control" required>
@@ -579,7 +470,7 @@
                 </div>
                 <div class="form-group">
                     <label>Proje Detayları</label>
-                    <textarea name="message" class="form-control" rows="5" placeholder="Bize hayalinizden bahsedin..." required></textarea>
+                    <textarea name="message" class="form-control" rows="5" placeholder="Web sitesi, SEO veya Sosyal Medya ihtiyacınızdan bahsedin..." required></textarea>
                 </div>
                 <button type="submit" class="submit-btn" id="sendBtn">TEKLİF AL <i class="fas fa-paper-plane"></i></button>
                 <p id="result" style="text-align:center; margin-top:15px; color:#aaa;"></p>
@@ -589,24 +480,61 @@
 
     <footer>
         <div class="logo" style="justify-content:center; margin-bottom:20px;">
-            <img src="src/logo.png" alt="Logo" style="height: 80px;">
+            <img src="src/logo.png" alt="Çözüm Creative Logo" style="height: 80px;">
         </div>
         
         <div style="display:flex; justify-content:center; gap:25px; margin-bottom:30px;">
-            <a href="https://www.instagram.com/cozumortagim.co/" target="_blank" style="font-size:1.5rem; color:#fff;"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/905300249586" target="_blank" style="font-size:1.5rem; color:#fff;"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.linkedin.com/company/%C3%A7%C3%B6z%C3%BCmorta%C4%9F%C4%B1m/" target="_blank" style="font-size:1.5rem; color:#fff;"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/cozumortagim.co/" target="_blank" aria-label="Instagram" style="font-size:1.5rem; color:#fff;"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/905300249586" target="_blank" aria-label="WhatsApp" style="font-size:1.5rem; color:#fff;"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.linkedin.com/company/%C3%A7%C3%B6z%C3%BCmorta%C4%9F%C4%B1m/" target="_blank" aria-label="LinkedIn" style="font-size:1.5rem; color:#fff;"><i class="fab fa-linkedin"></i></a>
         </div>
-        <p style="color:#444; font-size:0.8rem;">&copy; 2025 Tüm Hakları Saklıdır.</p>
+        <p style="color:#444; font-size:0.8rem;">&copy; 2025 Çözüm Creative. Kocaeli Web Tasarım ve Dijital Ajans.</p>
     </footer>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Çözüm Creative",
+      "image": "https://zeyneptuncel.github.io/cozumcreative-website/src/logo.png",
+      "@id": "https://zeyneptuncel.github.io/cozumcreative-website/",
+      "url": "https://zeyneptuncel.github.io/cozumcreative-website/",
+      "telephone": "+905300249586",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Gebze",
+        "addressRegion": "Kocaeli",
+        "addressCountry": "TR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 40.8027,
+        "longitude": 29.4307
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://www.instagram.com/cozumortagim.co/",
+        "https://www.linkedin.com/company/%C3%A7%C3%B6z%C3%BCmorta%C4%9F%C4%B1m/"
+      ]
+    }
+    </script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // AOS Başlat
         AOS.init({ once: true, offset: 100 });
 
-        // PRELOADER SCRIPT
         window.addEventListener('load', function() {
             const preloader = document.getElementById('preloader');
             setTimeout(function() {
@@ -615,7 +543,6 @@
             }, 1500); 
         });
 
-        // MOBİL MENÜ JS
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             const toggle = document.querySelector('.mobile-toggle');
@@ -623,7 +550,6 @@
             toggle.classList.toggle('active');
         }
 
-        // HİZMETLER SUB-MENU JS
         function toggleSubMenu() {
             const subMenu = document.getElementById('mobileSubMenu');
             const btn = document.querySelector('.mobile-dropdown-btn');
@@ -631,27 +557,23 @@
             btn.classList.toggle('active');
         }
 
-        // Yazı Animasyonu
         var typed = new Typed('#typed-output', {
-            strings: [ 'Sosyal Medya Yönetimi...', 'Hedef Kitle Analizi...', 'Viral Video Kurgusu...', 'Google Reklamları...', 'Marka Bilinirliği Artırma...' ],
+            strings: [ 'Profesyonel Web Tasarım...', 'SEO Uyumlu İçerik...', 'Sosyal Medya Yönetimi...', 'Google Reklamları...', 'Marka Kimliği Oluşturma...' ],
             typeSpeed: 40, backSpeed: 20, backDelay: 1500, loop: true, showCursor: true, cursorChar: '|',
         });
 
-        // Header Scroll
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
             if(window.scrollY > 50) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
         });
 
-        // Video Modal
         const modal = document.getElementById('videoModal');
         const videoPlayer = document.getElementById('mainVideoPlayer');
         function openVideo() { modal.classList.add('active'); videoPlayer.play(); }
         function closeVideo() { modal.classList.remove('active'); videoPlayer.pause(); videoPlayer.currentTime = 0; }
         modal.addEventListener('click', function(e) { if (e.target === modal) closeVideo(); });
 
-        // TABLET 3D SCROLL ANIMATION
         window.addEventListener('scroll', function() {
             if (window.innerWidth > 992) {
                 const tablet = document.getElementById('movingTablet');
@@ -666,7 +588,6 @@
             }
         });
 
-        // --- AKILLI SCROLL TEXT REVEAL ---
         const revealTextContainer = document.getElementById('revealText');
         revealTextContainer.innerHTML = revealTextContainer.textContent.replace(/\S/g, "<span>$&</span>");
 
@@ -696,15 +617,12 @@
             });
         });
 
-        // ----------------------------------------------------------------
-        // İletişim Formu (FORMSUBMIT.CO + AJAX + SWEETALERT)
-        // ----------------------------------------------------------------
         const form = document.getElementById('contactForm');
         const result = document.getElementById('result');
 
         if(form){
              form.addEventListener('submit', function(e) {
-                e.preventDefault(); // Sayfa yenilenmesini engelle
+                e.preventDefault(); 
 
                 const formData = new FormData(form);
                 const object = Object.fromEntries(formData);
@@ -712,9 +630,7 @@
                 
                 result.innerHTML = "Gönderiliyor...";
 
-                // AŞAĞIDAKİ ADRESE DİKKAT!
-                // 'https://formsubmit.co/ajax/BURAYA_MAIL_ADRESINI_YAZ' kısmını kendi mailinle değiştir.
-                
+                // AŞAĞIDAKİ ADRESİ KONTROL ET AŞKIM!
                 fetch('https://formsubmit.co/ajax/thefurkanakyuz@gmail.com', {
                     method: 'POST',
                     headers: { 
@@ -726,7 +642,6 @@
                 .then(async (response) => {
                     const jsonResponse = await response.json();
                     if (response.status == 200) {
-                        // Başarılı olursa şık kutucuk (SweetAlert) çıksın
                         Swal.fire({ 
                             title: 'Harika!', 
                             text: 'Mesajınız başarıyla iletildi.', 
@@ -736,7 +651,7 @@
                             confirmButtonColor: '#d32f2f'
                         });
                         result.innerHTML = ""; 
-                        form.reset(); // Formu temizle
+                        form.reset(); 
                     } else {
                         console.log(response);
                         Swal.fire({ 

@@ -16,7 +16,6 @@
             --primary: #d32f2f;
             --dark: #050505;
             --bg-dark: #0a0a0a;
-            --item-bg: #111;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -28,7 +27,7 @@
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
 
-        /* --- HEADER & NAV --- */
+        /* --- HEADER & NAV (WEB TASARIM SAYFASINDAN ALINDI) --- */
         header {
             position: fixed; top: 0; width: 100%; padding: 15px 5%; 
             display: flex; justify-content: space-between; align-items: center;
@@ -44,7 +43,7 @@
         .desktop-nav a { color: #fff; font-weight: 600; font-size: 0.95rem; opacity: 0.8; }
         .desktop-nav a:hover { color: var(--primary); opacity: 1; }
         
-        /* --- PREMIUM DROPDOWN (KAPANMAYAN VERSİYON) --- */
+        /* --- PREMIUM DROPDOWN MENÜ --- */
         .dropdown-menu {
             position: absolute; top: 100%; left: 0; min-width: 240px;
             background: rgba(15, 15, 15, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -54,7 +53,7 @@
             opacity: 0; visibility: hidden; transform: translateY(15px);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; z-index: 9999;
         }
-        /* GÖRÜNMEZ KÖPRÜ */
+        /* Görünmez Köprü */
         .dropdown-menu::before {
             content: ""; position: absolute; top: -30px; left: 0; width: 100%; height: 30px; background: transparent; display: block;
         }
@@ -74,14 +73,13 @@
         }
         .cta-btn-header:hover { transform: scale(1.05); background: #e0e0e0; }
 
-        /* --- MOBİL MENÜ TOGGLE (HAMBURGER) --- */
+        /* --- MOBİL MENÜ --- */
         .mobile-toggle { display: none; cursor: pointer; z-index: 1002; }
         .bar { width: 30px; height: 3px; background: #fff; margin: 6px 0; transition: 0.4s; border-radius: 2px; }
         .mobile-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); background: var(--primary); }
         .mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
         .mobile-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); background: var(--primary); }
 
-        /* --- MOBİL MENÜ İÇERİK --- */
         .mobile-menu-overlay {
             position: fixed; top: -100%; left: 0; width: 100%; height: 100vh;
             background: rgba(0,0,0,0.98); backdrop-filter: blur(20px);
@@ -94,7 +92,6 @@
         .mobile-menu-links > li > a { font-size: 1.8rem; font-weight: 700; color: #fff; text-transform: uppercase; display: block; }
         .mobile-menu-links > li > a:hover { color: var(--primary); letter-spacing: 2px; }
 
-        /* MOBİL DROPDOWN */
         .mobile-dropdown-content {
             max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
             background: rgba(255,255,255,0.03); border-radius: 15px; margin-top: 10px;
@@ -116,120 +113,72 @@
 
         /* --- HERO --- */
         .ref-hero {
-            height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; background: radial-gradient(circle at center, #1a0505, #000); padding-top: 100px;
+            height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; background: radial-gradient(circle, #1a0505, #000); padding-top: 80px;
         }
-        .ref-hero h1 { font-size: 4rem; font-family: 'Playfair Display', serif; margin-bottom: 20px; }
-        .ref-hero p { color: #888; max-width: 600px; font-size: 1.1rem; }
+        .ref-hero h1 { font-size: 3.5rem; margin-bottom: 15px; font-family: 'Playfair Display', serif; }
 
-        /* --- YENİ SLIDER YAPISI (SWIPER) --- */
-        .portfolio-slider-section {
-            padding: 50px 0 100px; overflow: hidden;
-        }
-        .swiper {
-            width: 100%;
-            padding-bottom: 50px !important;
-        }
-        .swiper-slide {
-            background-position: center;
-            background-size: cover;
-            width: 300px; /* Kart Genişliği */
-            height: 380px; /* Kart Yüksekliği */
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid #222;
-            position: relative;
-            transition: 0.3s;
-        }
-        /* Hover Efekti */
-        .swiper-slide:hover { transform: translateY(-10px); border-color: var(--primary); }
+        /* --- SLIDER (AKICI) --- */
+        .portfolio-slider-section { padding: 50px 0; overflow: hidden; }
+        .swiper { width: 100%; padding: 20px 0 50px !important; }
         
-        .p-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .swiper-slide:hover .p-img { transform: scale(1.1); filter: grayscale(100%); }
+        /* Akışkanlık için */
+        .swiper-wrapper { transition-timing-function: linear; }
 
+        .swiper-slide {
+            width: 300px; height: 380px; border-radius: 15px; overflow: hidden; 
+            border: 1px solid #333; position: relative; background: #000; transition:0.3s;
+        }
+        .swiper-slide:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .p-img { width: 100%; height: 100%; object-fit: cover; }
         .p-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); /* Biraz daha koyu yaptım */
+            position: absolute; inset: 0; background: rgba(0,0,0,0.85);
             display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
             opacity: 0; transition: 0.3s;
         }
         .swiper-slide:hover .p-overlay { opacity: 1; }
+        .p-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+        .ref-insta { 
+            color: #ccc; font-size: 0.9rem; text-transform: uppercase; 
+            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        }
+        .ref-insta:hover { color: var(--primary); }
 
-        .p-title { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 5px; transform: translateY(20px); transition: 0.4s; }
-        
-        /* INSTAGRAM BUTONU STİLİ */
-        .ref-insta {
-            color: #ccc;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transform: translateY(20px);
-            transition: 0.4s 0.1s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-        .ref-insta:hover {
-            color: var(--primary);
-        }
-        .ref-insta i { font-size: 1.1rem; }
-        
-        .swiper-slide:hover .p-title, .swiper-slide:hover .ref-insta { transform: translateY(0); }
-
-        /* --- VIDEO TESTIMONIALS --- */
-        .video-reviews {
-            padding: 100px 5%; background: #080808; border-top: 1px solid #111;
-        }
-        .vr-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px;
-        }
+        /* --- VİDEOLAR --- */
+        .video-reviews { padding: 80px 5%; background: #080808; }
+        .vr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
         .vr-item {
-            position: relative; border-radius: 20px; overflow: hidden; cursor: pointer;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 1px solid #222;
-            transition: 0.4s; height: 400px; background: #000;
+            position: relative; border-radius: 20px; overflow: hidden; height: 500px;
+            border: 1px solid #333; background: #000; cursor: pointer; transition: 0.3s;
         }
-        .vr-item:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 0 40px rgba(211, 47, 47, 0.4); border-color: var(--primary); }
-        .vr-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
+        .vr-item:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .vr-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.5s; }
         .vr-item:hover .vr-video { opacity: 1; }
-        .vr-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px;
-            background: linear-gradient(to top, #000, transparent); pointer-events: none;
-        }
-        .vr-name { font-size: 1.2rem; font-weight: 700; color: #fff; }
-        .vr-role { font-size: 0.9rem; color: var(--primary); }
         .play-icon {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 3rem; color: #fff; opacity: 0; transition: 0.3s; z-index: 5;
-            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+            font-size: 4rem; color: #fff; z-index: 2; pointer-events: none;
         }
-        .vr-item:hover .play-icon { opacity: 1; }
+        .vr-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
+            background: linear-gradient(to top, #000, transparent);
+        }
 
-        /* --- CINEMATIC MODAL --- */
+        /* --- MODAL --- */
         .cine-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); z-index: 99999;
-            display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.95); z-index: 99999; display: none; 
+            justify-content: center; align-items: center;
         }
-        .cine-modal.active { display: flex; animation: fadeIn 0.3s; }
-        .cine-video-wrapper {
-            width: 100%; max-width: 400px; max-height: 70vh; aspect-ratio: 9/16; 
-            position: relative; box-shadow: 0 0 80px rgba(211, 47, 47, 0.3);
-            border-radius: 20px; overflow: hidden; background: #000;
-        }
-        .cine-video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
+        .cine-modal.active { display: flex; }
+        .cine-video-wrapper { width: 90%; max-width: 450px; aspect-ratio: 9/16; background: #000; position: relative; }
+        .cine-video-wrapper video { width: 100%; height: 100%; }
         .cine-close {
-            position: absolute; top: 20px; right: 20px; color: #fff; font-size: 2rem; 
-            cursor: pointer; z-index: 10; background: rgba(0,0,0,0.5); padding: 5px 15px; border-radius: 50%;
+            position: absolute; top: 20px; right: 20px; color: #fff; font-size: 3rem; cursor: pointer; z-index: 10000;
         }
-        
-        footer { background: #000; padding: 40px; text-align: center; color: #444; border-top: 1px solid #111; }
 
         @media (max-width: 992px) {
             .desktop-nav, .cta-btn-header { display: none !important; }
             .mobile-toggle { display: block; }
-            .logo img { height: 70px; }
         }
     </style>
 </head>
@@ -238,16 +187,13 @@
     <div class="cine-modal" id="cineModal">
         <div class="cine-close" onclick="closeCinematic()">&times;</div>
         <div class="cine-video-wrapper">
-            <video id="cinePlayer" controls controlsList="nodownload">
-                <source src="" type="video/mp4">
-            </video>
+            <video id="cinePlayer" controls controlsList="nodownload"><source src="" type="video/mp4"></video>
         </div>
     </div>
 
     <div class="mobile-menu-overlay" id="mobileMenu">
         <ul class="mobile-menu-links">
             <li><a href="index.html">Ana Sayfa</a></li>
-            
             <li>
                 <a href="javascript:void(0)" class="mobile-dropdown-btn" onclick="toggleSubMenu()">
                     Hizmetler <i class="fas fa-chevron-down arrow-icon" style="font-size: 1rem; margin-left: 10px;"></i>
@@ -259,26 +205,25 @@
                     <a href="diger-hizmetler.html">Diğer Hizmetler</a>
                 </div>
             </li>
-            
             <li><a href="referanslar.html" style="color:var(--primary);">Referanslar</a></li>
             <li><a href="index.html#iletisim" onclick="toggleMobileMenu()">İletişim</a></li>
-
             <li style="margin-top: 20px;">
                 <a href="index.html#iletisim" onclick="toggleMobileMenu()" class="mobile-cta-btn">TEKLİF AL</a>
             </li>
         </ul>
+        <div class="cine-close" onclick="toggleMobileMenu()" style="top:20px; right:20px; font-size:2rem;">&times;</div>
     </div>
 
-    <header id="header">
-        <div class="logo">
-            <a href="index.html"><img src="src/logo.png" alt="Logo"></a>
-        </div>
+    <header>
+        <div class="logo"><a href="index.html"><img src="src/logo.png" alt="Logo"></a></div>
         
         <nav class="desktop-nav">
             <ul>
                 <li><a href="index.html">Ana Sayfa</a></li>
                 <li style="position:relative;">
-                    <a href="#">Hizmetler <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-top:2px;"></i></a>
+                    <a href="javascript:void(0)">
+                        Hizmetler <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="web-tasarim.html"><i class="fas fa-code"></i> Web Tasarım</a></li>
                         <li><a href="grafik-tasarim.html"><i class="fas fa-paint-brush"></i> Grafik Tasarım</a></li>
@@ -290,307 +235,260 @@
                 <li><a href="index.html#iletisim">İletişim</a></li>
             </ul>
         </nav>
+        
         <a href="index.html#iletisim" class="cta-btn-header">Teklif Al</a>
-
+        
         <div class="mobile-toggle" onclick="toggleMobileMenu()">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
         </div>
     </header>
 
     <section class="ref-hero">
         <h1 data-aos="fade-up">Gurur Tablomuz</h1>
-        <p data-aos="fade-up" data-aos-delay="100">Birlikte büyüdüğümüz, dijital dönüşümüne eşlik ettiğimiz markalar.</p>
+        <p data-aos="fade-up">Birlikte büyüdüğümüz, dijital dönüşümüne eşlik ettiğimiz markalar.</p>
     </section>
 
     <section class="portfolio-slider-section">
-        
-        <div style="margin-bottom: 50px;">
-            <div class="swiper mySwiper1">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="src/referance/1.png" class="p-img">
-                        <div class="p-overlay">
-                            <h3 class="p-title">Permanent Nail Beauty</h3>
-                            <a href="https://www.instagram.com/naillabkayseri_/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+        <div class="swiper mySwiper1">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="src/referance/1.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Permanent Nail Beauty</h3>
+                        <a href="https://www.instagram.com/naillabkayseri_/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/2.png" class="p-img">
-                        <div class="p-overlay">
-                            <h3 class="p-title">Cüneyt Aysel <br> Hair Studio & Nail Saloon</h3>
-                            <a href="https://www.instagram.com/cuneytayselhairnailstudio/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/2.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Cüneyt Aysel Hair Studio</h3>
+                        <a href="https://www.instagram.com/cuneytayselhairnailstudio/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/3.png" class="p-img">
-                        <div class="p-overlay">
-                            <h3 class="p-title">Ayşegül Aydın Güzellik Merkezi</h3>
-                            <a href="https://www.instagram.com/aysegulaydnbeauty/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/3.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Ayşegül Aydın Güzellik</h3>
+                        <a href="https://www.instagram.com/aysegulaydnbeauty/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/4.png" class="p-img">
-                        <div class="p-overlay">
-                            <h3 class="p-title">Leyla Zabitova</h3>
-                            <a href="https://www.instagram.com/leylazabitovaguzellik/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/4.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Leyla Zabitova</h3>
+                        <a href="https://www.instagram.com/leylazabitovaguzellik/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/5.png" class="p-img">
-                        <div class="p-overlay">
-                            <h3 class="p-title">Epiland <br> Lazer Epilasyon ve Güzellik Merkezi</h3>
-                            <a href="https://www.instagram.com/epilandguzellik/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/5.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Epiland Güzellik</h3>
+                        <a href="https://www.instagram.com/epilandguzellik/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/6.png" class="p-img">
-                        <div class="p-overlay">
-                            <h3 class="p-title">Kadıköy Royal Güzellik Merkezi</h3>
-                            <a href="https://www.instagram.com/kadikoyroyal/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/6.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Kadıköy Royal</h3>
+                        <a href="https://www.instagram.com/kadikoyroyal/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/7.png" class="p-img">
-                        <div class="p-overlay">
-                            <h3 class="p-title">Dünyamed Güzellik Salonları</h3>
-                            <a href="https://www.instagram.com/dunyameddemetevlervip/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/7.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Dünyamed Güzellik</h3>
+                        <a href="https://www.instagram.com/dunyameddemetevlervip/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/8.png" class="p-img">
-                        <div class="p-overlay">
-                            <h3 class="p-title">Lariva Güzellik</h3>
-                            <a href="https://www.instagram.com/larivaguzellik/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/8.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Lariva Güzellik</h3>
+                        <a href="https://www.instagram.com/larivaguzellik/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/9.png" class="p-img">
-                        <div class="p-overlay">
-                            <h3 class="p-title">Sirius Clinic</h3>
-                            <a href="https://www.instagram.com/sirius.cliniic/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/9.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Sirius Clinic</h3>
+                        <a href="https://www.instagram.com/sirius.cliniic/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/10.png" class="p-img">
-                        <div class="p-overlay">
-                            <h3 class="p-title">Makeup & Hair Studyo <br> Tamara Yusuf</h3>
-                            <a href="https://www.instagram.com/tamara__yusufova/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/10.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Tamara Yusuf</h3>
+                        <a href="https://www.instagram.com/tamara__yusufova/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div dir="rtl"> <div class="swiper mySwiper2">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="src/referance/21.png" class="p-img">
-                        <div class="p-overlay" dir="ltr">
-                            <h3 class="p-title">Burcu Beauty Box</h3>
-                            <a href="https://www.instagram.com/burcubeautyboxx/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+    <section class="portfolio-slider-section" style="padding-top:0;">
+        <div class="swiper mySwiper2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="src/referance/21.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Burcu Beauty Box</h3>
+                        <a href="https://www.instagram.com/burcubeautyboxx/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/22.png" class="p-img">
-                        <div class="p-overlay" dir="ltr">
-                            <h3 class="p-title">Ayşenur Bozak <br> Güzellik ve Yaşam Merkezi</h3>
-                            <a href="https://www.instagram.com/aysenurbozakk/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/22.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Ayşenur Bozak</h3>
+                        <a href="https://www.instagram.com/aysenurbozakk/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/13.png" class="p-img">
-                        <div class="p-overlay" dir="ltr">
-                            <h3 class="p-title">Rosh Beauty</h3>
-                            <a href="https://www.instagram.com/roshbeautynail/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/13.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Rosh Beauty</h3>
+                        <a href="https://www.instagram.com/roshbeautynail/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/14.png" class="p-img">
-                        <div class="p-overlay" dir="ltr">
-                            <h3 class="p-title">Guzmania <br> Güzellik Merkezi</h3>
-                            <a href="https://www.instagram.com/guzmaniaguzellik/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/14.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Guzmania Güzellik</h3>
+                        <a href="https://www.instagram.com/guzmaniaguzellik/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/15.png" class="p-img">
-                        <div class="p-overlay" dir="ltr">
-                            <h3 class="p-title">Tuğçe Çetin Beauty</h3>
-                            <a href="https://www.instagram.com/tugcecetinbeauty/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/15.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Tuğçe Çetin Beauty</h3>
+                        <a href="https://www.instagram.com/tugcecetinbeauty/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/16.png" class="p-img">
-                        <div class="p-overlay" dir="ltr">
-                            <h3 class="p-title">Esteneva Hair Transplantation</h3>
-                            <a href="https://www.instagram.com/esteneva_hair_transplantation/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/16.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Esteneva Hair</h3>
+                        <a href="https://www.instagram.com/esteneva_hair_transplantation/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/17.png" class="p-img">
-                        <div class="p-overlay" dir="ltr">
-                            <h3 class="p-title">Medikalipo Güzellik Merkezi</h3>
-                            <a href="https://www.instagram.com/medikalipo/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/17.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Medikalipo Güzellik</h3>
+                        <a href="https://www.instagram.com/medikalipo/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/18.png" class="p-img">
-                        <div class="p-overlay" dir="ltr">
-                            <h3 class="p-title">Dermo Filler</h3>
-                            <a href="https://www.instagram.com/dermo_filler/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/18.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Dermo Filler</h3>
+                        <a href="https://www.instagram.com/dermo_filler/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/19.png" class="p-img">
-                        <div class="p-overlay" dir="ltr">
-                            <h3 class="p-title">Dermo Beauty <br> Europe</h3>
-                            <a href="https://www.instagram.com/dermobeauty.europe/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/19.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Dermo Beauty Europe</h3>
+                        <a href="https://www.instagram.com/dermobeauty.europe/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="src/referance/20.png" class="p-img">
-                        <div class="p-overlay" dir="ltr">
-                            <h3 class="p-title">Mea Güzellik</h3>
-                            <a href="https://www.instagram.com/mea_ankara/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
-                        </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/referance/20.png" class="p-img">
+                    <div class="p-overlay">
+                        <h3 class="p-title">Mea Güzellik</h3>
+                        <a href="https://www.instagram.com/mea_ankara/" target="_blank" class="ref-insta"><i class="fab fa-instagram"></i> Instagram'a Git</a>
                     </div>
                 </div>
             </div>
         </div>
-
     </section>
 
     <section class="video-reviews">
-        <div style="text-align:center;" data-aos="fade-up">
-            <h2 style="font-size:3rem; margin-bottom:10px;">Onlar Bize Güvendi</h2>
-            <p style="color:#666;">Müşterilerimizin kendi ağzından başarı hikayeleri.</p>
-        </div>
-
+        <h2 style="text-align:center; font-size:2.5rem; margin-bottom:40px;">Başarı Hikayeleri</h2>
         <div class="vr-grid">
-            <div class="vr-item" data-aos="zoom-in" onclick="openCinematic('src/video1.mp4')">
-                <video class="vr-video" autoplay muted loop playsinline>
-                    <source src="src/video1.mp4" type="video/mp4">
-                </video>
-                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                <div class="vr-overlay">
-                    <div class="vr-name">Ayşegül Aydın Güzellik Merkezi</div>
-                    <div class="vr-role"> </div>
-                </div>
+            <div class="vr-item" onclick="openCinematic('src/video1.mp4')">
+                <video class="vr-video" muted loop playsinline><source src="src/video1.mp4" type="video/mp4"></video>
+                <div class="play-icon"><i class="fas fa-play"></i></div>
+                <div class="vr-overlay"><h3>Ayşegül Aydın Güzellik</h3></div>
             </div>
-
-            <div class="vr-item" data-aos="zoom-in" data-aos-delay="100" onclick="openCinematic('src/video2.mp4')">
-                <video class="vr-video" autoplay muted loop playsinline>
-                    <source src="src/video2.mp4" type="video/mp4">
-                </video>
-                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                <div class="vr-overlay">
-                    <div class="vr-name">Cüneyt Aysel Hair Studio & Nail Saloon</div>
-                    <div class="vr-role"></div>
-                </div>
+            <div class="vr-item" onclick="openCinematic('src/video2.mp4')">
+                <video class="vr-video" muted loop playsinline><source src="src/video2.mp4" type="video/mp4"></video>
+                <div class="play-icon"><i class="fas fa-play"></i></div>
+                <div class="vr-overlay"><h3>Cüneyt Aysel Hair Studio</h3></div>
             </div>
-
-            <div class="vr-item" data-aos="zoom-in" data-aos-delay="200" onclick="openCinematic('src/video3.mp4')">
-                <video class="vr-video" autoplay muted loop playsinline>
-                    <source src="src/video3.mp4" type="video/mp4">
-                </video>
-                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                <div class="vr-overlay">
-                    <div class="vr-name">Kadıköy Royal</div>
-                    <div class="vr-role"></div>
-                </div>
+            <div class="vr-item" onclick="openCinematic('src/video3.mp4')">
+                <video class="vr-video" muted loop playsinline><source src="src/video3.mp4" type="video/mp4"></video>
+                <div class="play-icon"><i class="fas fa-play"></i></div>
+                <div class="vr-overlay"><h3>Kadıköy Royal</h3></div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Çözüm Creative | Kreatif Ajans</p>
+    <footer style="text-align:center; padding:50px; background:#000; border-top:1px solid #222; margin-top:50px;">
+        <p>&copy; 2025 Çözüm Creative.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <script>
-        AOS.init({ duration: 800, once: true });
+        AOS.init();
 
-        // MOBİL MENÜ FONKSİYONLARI
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            const toggle = document.querySelector('.mobile-toggle');
-            menu.classList.toggle('active');
-            toggle.classList.toggle('active');
+            document.getElementById('mobileMenu').classList.toggle('active');
         }
-
+        
         function toggleSubMenu() {
-            const subMenu = document.getElementById('mobileSubMenu');
-            const btn = document.querySelector('.mobile-dropdown-btn');
-            subMenu.classList.toggle('active');
-            btn.classList.toggle('active');
+            document.getElementById('mobileSubMenu').classList.toggle('active');
         }
 
-        // Header Scroll Efekti
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if(window.scrollY > 50) header.style.background = 'rgba(0,0,0,0.98)';
-            else header.style.background = 'rgba(5,5,5,0.95)';
+        // AKICI SLIDER AYARLARI (LİNEAR)
+        const swiperConfig = {
+            slidesPerView: "auto",
+            spaceBetween: 20,
+            loop: true,
+            speed: 5000, 
+            allowTouchMove: false,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: false 
+            }
+        };
+
+        new Swiper(".mySwiper1", swiperConfig);
+        
+        new Swiper(".mySwiper2", {
+            ...swiperConfig,
+            autoplay: { delay: 0, disableOnInteraction: false, reverseDirection: true }
         });
 
-        // --- SİNEMATİK VIDEO MODAL SCRIPT ---
-        const cineModal = document.getElementById('cineModal');
-        const cinePlayer = document.getElementById('cinePlayer');
+        // MODAL VE VİDEO
+        const modal = document.getElementById('cineModal');
+        const player = document.getElementById('cinePlayer');
 
-        function openCinematic(videoFile) {
-            cinePlayer.src = videoFile;
-            cineModal.classList.add('active');
-            cinePlayer.play();
+        function openCinematic(src) {
+            player.src = src;
+            modal.classList.add('active');
+            player.play();
         }
 
         function closeCinematic() {
-            cineModal.classList.remove('active');
-            cinePlayer.pause();
-            cinePlayer.currentTime = 0;
-            cinePlayer.src = "";
+            modal.classList.remove('active');
+            player.pause();
+            player.src = "";
         }
 
-        cineModal.addEventListener('click', function(e) {
-            if (e.target === cineModal) { closeCinematic(); }
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) closeCinematic();
         });
 
-        // --- SWIPER SLIDER AYARLARI ---
-        var swiper1 = new Swiper(".mySwiper1", {
-            slidesPerView: "auto",
-            spaceBetween: 20,
-            loop: true,
-            speed: 3000, // Akış hızı
-            autoplay: {
-                delay: 0,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                640: { slidesPerView: 2 },
-                768: { slidesPerView: 3 },
-                1024: { slidesPerView: 4 },
-                1400: { slidesPerView: 5 },
-            }
-        });
-
-        var swiper2 = new Swiper(".mySwiper2", {
-            slidesPerView: "auto",
-            spaceBetween: 20,
-            loop: true,
-            speed: 3500, // Biraz daha yavaş aksın
-            autoplay: {
-                delay: 0,
-                disableOnInteraction: false,
-                reverseDirection: true // Ters yöne aksın (RTL ile uyumlu olması için)
-            },
-            breakpoints: {
-                640: { slidesPerView: 2 },
-                768: { slidesPerView: 3 },
-                1024: { slidesPerView: 4 },
-                1400: { slidesPerView: 5 },
-            }
-        });
+        // Masaüstünde video hover
+        if(window.innerWidth > 992) {
+            document.querySelectorAll('.vr-item').forEach(item => {
+                const vid = item.querySelector('video');
+                item.addEventListener('mouseenter', () => vid.play().catch(()=>{}));
+                item.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+            });
+        }
     </script>
 </body>
 </html>
