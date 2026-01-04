@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
+    <link rel="icon" type="image/png" href="src/favicon.png">
     <meta charset="UTF-8">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diğer Hizmetler | Çözüm Creative</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,600;1,600&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://cozumcreative.com/diger-hizmetler">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,600;1,600&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <style>
         /* --- GENEL AYARLAR --- */
         :root {
@@ -17,63 +23,130 @@
             --dark: #050505;
             --bg-dark: #0a0a0a;
             --card-bg: #111;
+            --footer-bg: #030303;
+            /* Footer rengi eklendi */
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* --- ÖZEL SCROLLBAR (Tüm siteye hava katar) --- */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+            /* Sitenin arka planı */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            /* Çubuğun rengi */
+            border-radius: 5px;
+            border: 2px solid #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+            /* Üstüne gelince kırmızı olsun */
+        }
+
+        /* Metin Seçme Rengi (Kullanıcı yazıyı seçtiğinde) */
+        ::selection {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Outfit', sans-serif;
             background-color: var(--bg-dark);
             color: #fff;
             overflow-x: hidden;
         }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
 
         /* --- HEADER & NAV --- */
         header {
-            position: fixed; top: 0; width: 100%; padding: 15px 5%; 
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; background: rgba(5,5,5,0.95);
-            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: 0.4s;
         }
-        .logo img { height: 60px; width: auto; }
-        
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
         /* MASAÜSTÜ MENÜ */
-        .desktop-nav ul { display: flex; gap: 30px; align-items: center; }
-        .desktop-nav li { position: relative; padding: 10px 0; }
-        .desktop-nav a { color: #fff; font-weight: 600; font-size: 0.95rem; opacity: 0.8; }
-        .desktop-nav a:hover { color: var(--primary); opacity: 1; }
-        
-        /* --- GÜNCELLENMİŞ DROPDOWN (Kapanma Sorunu Çözüldü & Premium Görünüm) --- */
+        .desktop-nav ul {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .desktop-nav li {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .desktop-nav a {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .desktop-nav a:hover {
+            color: var(--primary);
+            opacity: 1;
+        }
+
+        /* --- GÜNCELLENMİŞ DROPDOWN --- */
         .dropdown-menu {
-            position: absolute; 
-            top: 100%; 
-            left: 0; 
+            position: absolute;
+            top: 100%;
+            left: 0;
             min-width: 240px;
-            
-            /* Glassmorphism & Stil */
             background: rgba(15, 15, 15, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-            
             padding: 10px;
-            display: flex; 
+            display: flex;
             flex-direction: column;
             gap: 5px;
-            
-            /* Animasyon */
-            opacity: 0; 
-            visibility: hidden; 
+            opacity: 0;
+            visibility: hidden;
             transform: translateY(15px);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
             z-index: 9999;
         }
 
-        /* --- GÖRÜNMEZ KÖPRÜ (Mouse kaçırmayı engeller) --- */
         .dropdown-menu::before {
             content: "";
             position: absolute;
@@ -85,88 +158,161 @@
             display: block;
         }
 
-        /* Dropdown Tetikleme */
-        .desktop-nav li:hover .dropdown-menu { 
-            opacity: 1; 
-            visibility: visible; 
-            transform: translateY(10px); 
-            pointer-events: auto; 
+        .desktop-nav li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(10px);
+            pointer-events: auto;
         }
 
-        /* Dropdown Linkleri */
-        .dropdown-menu a { 
-            padding: 12px 16px; 
-            color: #e0e0e0 !important; 
-            border-radius: 8px; 
-            transition: all 0.3s ease; 
-            display: flex; 
-            align-items: center; 
+        .dropdown-menu a {
+            padding: 12px 16px;
+            color: #e0e0e0 !important;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
             font-weight: 500;
-            border-left: none; /* Eski çizgiyi kaldırdık */
+            border-left: none;
         }
-        .dropdown-menu a:hover { 
-            background: rgba(211,47,47,0.15); 
-            color: #ff6b6b !important; 
+
+        .dropdown-menu a:hover {
+            background: rgba(211, 47, 47, 0.15);
+            color: #ff6b6b !important;
             transform: translateX(5px);
             padding-left: 16px;
         }
+
         .dropdown-menu i {
             margin-right: 12px;
             color: var(--primary);
             transition: transform 0.3s ease;
             font-size: 1.1em;
         }
-        .dropdown-menu a:hover i { transform: scale(1.15); }
+
+        .dropdown-menu a:hover i {
+            transform: scale(1.15);
+        }
 
         .cta-btn-header {
-            background:#fff; color:#000; padding:10px 25px; border-radius:50px; font-weight:700;
+            background: #fff;
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
         }
 
-        /* --- MOBİL MENÜ TOGGLE (HAMBURGER) --- */
+        /* --- MOBİL MENÜ --- */
         .mobile-toggle {
-            display: none; cursor: pointer; z-index: 1002;
+            display: none;
+            cursor: pointer;
+            z-index: 1002;
         }
-        .bar {
-            width: 30px; height: 3px; background: #fff; margin: 6px 0;
-            transition: 0.4s; border-radius: 2px;
-        }
-        /* Hamburger Animasyonu */
-        .mobile-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); background: var(--primary); }
-        .mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
-        .mobile-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); background: var(--primary); }
 
-        /* --- MOBİL MENÜ İÇERİK (YUKARIDAN AÇILIR) --- */
+        .bar {
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            margin: 6px 0;
+            transition: 0.4s;
+            border-radius: 2px;
+        }
+
+        .mobile-toggle.active .bar:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+            background: var(--primary);
+        }
+
+        .mobile-toggle.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-toggle.active .bar:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+            background: var(--primary);
+        }
+
         .mobile-menu-overlay {
-            position: fixed; top: -100%; left: 0; width: 100%; height: 100vh;
-            background: rgba(0,0,0,0.98); backdrop-filter: blur(20px);
-            z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: fixed;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             transition: top 0.6s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        .mobile-menu-overlay.active { top: 0; }
-        
-        .mobile-menu-links { width: 100%; max-width: 400px; padding: 0 20px; }
-        .mobile-menu-links li { margin: 15px 0; text-align: center; }
-        .mobile-menu-links > li > a { 
-            font-size: 1.8rem; font-weight: 700; color: #fff; text-transform: uppercase; display: block;
-        }
-        .mobile-menu-links > li > a:hover { color: var(--primary); letter-spacing: 2px; }
 
-        /* MOBİL DROPDOWN (HİZMETLER) */
+        .mobile-menu-overlay.active {
+            top: 0;
+        }
+
+        .mobile-menu-links {
+            width: 100%;
+            max-width: 400px;
+            padding: 0 20px;
+        }
+
+        .mobile-menu-links li {
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .mobile-menu-links>li>a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .mobile-menu-links>li>a:hover {
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
+
         .mobile-dropdown-content {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
-            background: rgba(255,255,255,0.03); border-radius: 15px; margin-top: 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            margin-top: 10px;
         }
-        .mobile-dropdown-content.active { max-height: 400px; }
-        
-        .mobile-dropdown-content a {
-            display: block; padding: 12px; font-size: 1.1rem; color: #bbb !important; 
-            text-transform: capitalize; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 400;
-        }
-        .mobile-dropdown-content a:last-child { border-bottom: none; }
-        .arrow-icon { transition: transform 0.3s; display: inline-block; }
-        .mobile-dropdown-btn.active .arrow-icon { transform: rotate(180deg); color: var(--primary); }
 
-        /* MOBİL TEKLİF AL BUTONU */
+        .mobile-dropdown-content.active {
+            max-height: 400px;
+        }
+
+        .mobile-dropdown-content a {
+            display: block;
+            padding: 12px;
+            font-size: 1.1rem;
+            color: #bbb !important;
+            text-transform: capitalize;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-weight: 400;
+        }
+
+        .mobile-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .arrow-icon {
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .mobile-dropdown-btn.active .arrow-icon {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+
         .mobile-cta-btn {
             background: var(--primary) !important;
             color: #fff !important;
@@ -177,6 +323,7 @@
             box-shadow: 0 10px 30px rgba(211, 47, 47, 0.4);
             display: inline-block;
         }
+
         .mobile-cta-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 15px 40px rgba(211, 47, 47, 0.6);
@@ -184,161 +331,525 @@
 
         /* --- STUDIO HERO --- */
         .studio-hero {
-            height: 80vh; display: flex; align-items: center; justify-content: center;
-            position: relative; background: #000; overflow: hidden;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: #000;
+            overflow: hidden;
         }
+
         .hero-bg {
-            position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.4;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
             background: url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070') center/cover;
-            filter: grayscale(100%); transition: 1s;
+            filter: grayscale(100%);
+            transition: 1s;
         }
-        .studio-hero:hover .hero-bg { filter: grayscale(0%); transform: scale(1.02); }
-        
-        .hero-content { position: relative; z-index: 2; text-align: center; }
+
+        .studio-hero:hover .hero-bg {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
         .hero-title {
-            font-family: 'Bebas Neue', sans-serif; font-size: 8rem; line-height: 0.9; letter-spacing: 2px;
-            text-shadow: 0 0 50px rgba(0,0,0,0.8);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 8rem;
+            line-height: 0.9;
+            letter-spacing: 2px;
+            text-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
         }
+
         .hero-subtitle {
-            font-size: 1.5rem; color: var(--primary); letter-spacing: 5px; margin-top: 10px; font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            letter-spacing: 5px;
+            margin-top: 10px;
+            font-weight: 700;
         }
 
         /* --- FOCUS SERVICES --- */
-        .focus-section { padding: 100px 5%; display: flex; flex-direction: column; gap: 20px; }
-        .focus-card {
-            background: var(--card-bg); border: 1px solid #222; border-radius: 20px; padding: 40px;
-            display: flex; align-items: center; justify-content: space-between;
-            transition: 0.4s; cursor: pointer; position: relative; overflow: hidden;
+        .focus-section {
+            padding: 100px 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-        .focus-card::before {
-            content:''; position: absolute; left: 0; top: 0; height: 100%; width: 5px; 
-            background: var(--primary); transform: scaleY(0); transition: 0.4s;
-        }
-        .focus-card:hover { background: #1a1a1a; transform: translateX(10px); }
-        .focus-card:hover::before { transform: scaleY(1); }
 
-        .f-info { flex: 1; z-index: 2; }
-        .f-icon { font-size: 2.5rem; color: #555; margin-bottom: 15px; transition: 0.3s; }
-        .focus-card:hover .f-icon { color: var(--primary); }
-        .f-title { font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
-        .f-desc { color: #888; max-width: 600px; }
-        .f-arrow { font-size: 2rem; color: #333; transform: rotate(-45deg); transition: 0.4s; }
-        .focus-card:hover .f-arrow { color: #fff; transform: rotate(0); }
+        .focus-card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: 0.4s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .focus-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background: var(--primary);
+            transform: scaleY(0);
+            transition: 0.4s;
+        }
+
+        .focus-card:hover {
+            background: #1a1a1a;
+            transform: translateX(10px);
+        }
+
+        .focus-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .f-info {
+            flex: 1;
+            z-index: 2;
+        }
+
+        .f-icon {
+            font-size: 2.5rem;
+            color: #555;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .focus-card:hover .f-icon {
+            color: var(--primary);
+        }
+
+        .f-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .f-desc {
+            color: #888;
+            max-width: 600px;
+        }
+
+        .f-arrow {
+            font-size: 2rem;
+            color: #333;
+            transform: rotate(-45deg);
+            transition: 0.4s;
+        }
+
+        .focus-card:hover .f-arrow {
+            color: #fff;
+            transform: rotate(0);
+        }
 
         /* --- VIDEO SHOWCASE --- */
         .video-showcase {
-            padding: 100px 5%; background: #0e0e0e; border-top: 1px solid #222; border-bottom: 1px solid #222;
-            display: flex; align-items: center; gap: 50px;
+            padding: 100px 5%;
+            background: #0e0e0e;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center;
+            gap: 50px;
         }
-        .vs-text h2 { font-size: 3rem; margin-bottom: 20px; line-height: 1.1; }
-        .vs-text p { color: #999; margin-bottom: 30px; font-size: 1.1rem; }
+
+        .vs-text h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .vs-text p {
+            color: #999;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
         .vs-video-box {
-            flex: 1; height: 400px; border-radius: 20px; overflow: hidden; position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            flex: 1;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
-        .vs-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+
+        .vs-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+
         .play-overlay {
-            position: absolute; top:50%; left:50%; transform: translate(-50%,-50%);
-            width: 80px; height: 80px; background: rgba(255,255,255,0.1); backdrop-filter: blur(5px);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(255,255,255,0.2); transition: 0.3s;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: 0.3s;
         }
-        .play-overlay i { font-size: 2rem; color: #fff; margin-left: 5px; }
-        .vs-video-box:hover .play-overlay { background: var(--primary); transform: translate(-50%,-50%) scale(1.1); border-color: var(--primary); }
+
+        .play-overlay i {
+            font-size: 2rem;
+            color: #fff;
+            margin-left: 5px;
+        }
+
+        .vs-video-box:hover .play-overlay {
+            background: var(--primary);
+            transform: translate(-50%, -50%) scale(1.1);
+            border-color: var(--primary);
+        }
 
         /* --- CONTENT WRITING --- */
-        .content-services { padding: 100px 5%; text-align: center; }
+        .content-services {
+            padding: 100px 5%;
+            text-align: center;
+        }
+
         .cs-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
         }
+
         .cs-item {
-            padding: 30px; border: 1px solid #222; border-radius: 15px; transition: 0.3s;
+            padding: 30px;
+            border: 1px solid #222;
+            border-radius: 15px;
+            transition: 0.3s;
         }
-        .cs-item:hover { border-color: var(--primary); background: #111; }
-        .cs-item h3 { font-size: 1.5rem; margin-bottom: 15px; }
-        .cs-item p { color: #777; font-size: 0.9rem; }
+
+        .cs-item:hover {
+            border-color: var(--primary);
+            background: #111;
+        }
+
+        .cs-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cs-item p {
+            color: #777;
+            font-size: 0.9rem;
+        }
 
         /* --- CTA --- */
         .cta-section {
-            padding: 100px 5%; background: linear-gradient(to right, #000, #1a0505);
-            display: flex; justify-content: space-between; align-items: center;
+            padding: 100px 5%;
+            background: linear-gradient(to right, #000, #1a0505);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-top: 1px solid #222;
         }
-        .cta-left h2 { font-size: 3rem; margin-bottom: 10px; font-family: 'Playfair Display', serif; }
-        .cta-btn {
-            padding: 20px 50px; border: 1px solid #fff; border-radius: 50px; 
-            font-weight: 700; transition: 0.3s; display: inline-block;
+
+        .cta-left h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
         }
-        .cta-btn:hover { background: #fff; color: #000; }
 
-        /* Footer */
-        footer { background: #000; padding: 40px; text-align: center; color: #444; border-top: 1px solid #111; }
+        .cta-btn {
+            padding: 20px 50px;
+            border: 1px solid #fff;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: 0.3s;
+            display: inline-block;
+        }
 
-        /* --- RESPONSIVE AYARLAR (GÜNCELLENDİ) --- */
+        .cta-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* --- YENİ FOOTER TASARIMI (Index.html'den alındı) --- */
+        footer {
+            background-color: var(--footer-bg);
+            color: #bbb;
+            padding: 80px 5% 30px;
+            font-size: 0.95rem;
+            border-top: 1px solid #1a1a1a;
+            position: relative;
+        }
+
+        /* Footer Gradient Border */
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-col h3 {
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-about p {
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .footer-social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social-links a {
+            width: 40px;
+            height: 40px;
+            background: #1a1a1a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: 0.3s;
+            border: 1px solid #333;
+        }
+
+        .footer-social-links a:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .footer-links a i {
+            margin-right: 8px;
+            font-size: 0.8rem;
+            color: var(--primary);
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .footer-contact i {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-top: 4px;
+        }
+
+        .footer-contact span {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+        }
+
+        .footer-legal a {
+            margin-left: 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-legal a:hover {
+            color: var(--primary);
+        }
+
+        /* --- RESPONSIVE AYARLAR --- */
         @media (max-width: 992px) {
-            .hero-title { font-size: 4rem; }
-            .video-showcase { flex-direction: column; }
-            .vs-video-box { width: 100%; }
-            .cta-section { flex-direction: column; text-align: center; gap: 30px; }
-            
+            .hero-title {
+                font-size: 4rem;
+            }
+
+            .video-showcase {
+                flex-direction: column;
+            }
+
+            .vs-video-box {
+                width: 100%;
+            }
+
+            .cta-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
             /* Mobilde Desktop Menüyü Gizle */
-            .desktop-nav, .cta-btn-header { display: none !important; }
+            .desktop-nav,
+            .cta-btn-header {
+                display: none !important;
+            }
+
             /* Hamburger Menüyü Göster */
-            .mobile-toggle { display: block; }
+            .mobile-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-col h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-social-links {
+                justify-content: center;
+            }
+
+            .footer-contact li {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal a {
+                margin: 0 10px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="mobile-menu-overlay" id="mobileMenu">
         <ul class="mobile-menu-links">
-            <li><a href="index.html">Ana Sayfa</a></li>
-            
+            <li><a href="/">Ana Sayfa</a></li>
             <li>
                 <a href="javascript:void(0)" class="mobile-dropdown-btn" onclick="toggleSubMenu()">
                     Hizmetler <i class="fas fa-chevron-down arrow-icon" style="font-size: 1rem; margin-left: 10px;"></i>
                 </a>
                 <div class="mobile-dropdown-content" id="mobileSubMenu">
-                    <a href="web-tasarim.html">Web Tasarım</a>
-                    <a href="grafik-tasarim.html">Grafik Tasarım</a>
-                    <a href="dijital-pazarlama.html">Dijital Pazarlama</a>
-                    <a href="diger-hizmetler.html" style="color:#fff;">Diğer Hizmetler</a>
+                    <a href="yapay-zeka" style="color:var(--ai-accent);">Yapay Zeka &amp; AI</a>
+                    <a href="web-tasarim">Web Tasarım</a>
+                    <a href="grafik-tasarim">Grafik Tasarım</a>
+                    <a href="dijital-pazarlama">Dijital Pazarlama</a>
+                    <a href="diger-hizmetler">Diğer Hizmetler</a>
                 </div>
             </li>
-            
-          
-            <li><a href="referanslar.html">Referanslar</a></li>
-            <li><a href="index.html#iletisim" onclick="toggleMobileMenu()">İletişim</a></li>
-
+            <li><a href="referanslar">Referanslar</a></li>
+            <li><a href="/#iletisim" onclick="toggleMobileMenu()">İletişim</a></li>
             <li style="margin-top: 20px;">
-                <a href="index.html#iletisim" onclick="toggleMobileMenu()" class="mobile-cta-btn">TEKLİF AL</a>
+                <a href="/#iletisim" onclick="toggleMobileMenu()" class="mobile-cta-btn">TEKLİF AL</a>
             </li>
         </ul>
+        <div class="close-popup-btn" onclick="toggleMobileMenu()" style="top:30px; right:30px; font-size:2rem;">×</div>
     </div>
 
     <header id="header">
         <div class="logo">
-            <a href="index.html"><img src="src/logo.png" alt="Logo"></a>
+            <a href="/"><img src="src/logo.png" alt="Çözüm Creative Web Tasarım Ajansı Logosu"></a>
         </div>
-        
+
         <nav class="desktop-nav">
             <ul>
-                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="/">Ana Sayfa</a></li>
                 <li style="position:relative;">
-                    <a href="#" style="color:var(--primary);">Hizmetler <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <a href="#" style="color:var(--primary);">Hizmetler <i class="fas fa-chevron-down"
+                            style="font-size:0.7rem;"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="web-tasarim.html"><i class="fas fa-code"></i> Web Tasarım</a></li>
-                        <li><a href="grafik-tasarim.html"><i class="fas fa-paint-brush"></i> Grafik Tasarım</a></li>
-                        <li><a href="dijital-pazarlama.html"><i class="fas fa-bullhorn"></i> Dijital Pazarlama</a></li>
-                        <li><a href="diger-hizmetler.html"><i class="fas fa-plus-circle"></i> Diğer Hizmetler</a></li>
+                        <li><a href="yapay-zeka" style="color: #00f2ff;"><i class="fas fa-robot"></i> Yapay Zeka &
+                                AI</a></li>
+                        <li><a href="web-tasarim"><i class="fas fa-code"></i> Web Tasarım</a></li>
+                        <li><a href="grafik-tasarim"><i class="fas fa-paint-brush"></i> Grafik Tasarım</a></li>
+                        <li><a href="dijital-pazarlama"><i class="fas fa-bullhorn"></i> Dijital Pazarlama</a></li>
+                        <li><a href="diger-hizmetler"><i class="fas fa-plus-circle"></i> Diğer Hizmetler</a></li>
                     </ul>
                 </li>
-          
-                <li><a href="referanslar.html">Referanslar</a></li>
-                <li><a href="index.html#iletisim">İletişim</a></li>
+
+                <li><a href="referanslar">Referanslar</a></li>
+                <li><a href="/#iletisim">İletişim</a></li>
             </ul>
         </nav>
-        <a href="index.html#iletisim" class="cta-btn-header">Teklif Al</a>
+        <a href="/#iletisim" class="cta-btn-header">Teklif Al</a>
 
         <div class="mobile-toggle" onclick="toggleMobileMenu()">
             <div class="bar"></div>
@@ -365,7 +876,8 @@
             <div class="f-info">
                 <i class="fas fa-video f-icon"></i>
                 <div class="f-title">Tanıtım Filmi & Video</div>
-                <div class="f-desc">Drone çekimleri, kurumsal tanıtım filmleri ve YouTube içerik üretimi için profesyonel prodüksiyon ekibi.</div>
+                <div class="f-desc">Drone çekimleri, kurumsal tanıtım filmleri ve YouTube içerik üretimi için
+                    profesyonel prodüksiyon ekibi.</div>
             </div>
             <i class="fas fa-arrow-right f-arrow"></i>
         </div>
@@ -374,7 +886,8 @@
             <div class="f-info">
                 <i class="fas fa-pen-nib f-icon"></i>
                 <div class="f-title">İçerik & Metin Yazarlığı</div>
-                <div class="f-desc">SEO uyumlu blog yazıları, etkileyici reklam metinleri ve marka sloganları. Kelimelerin gücünü kullanın.</div>
+                <div class="f-desc">SEO uyumlu blog yazıları, etkileyici reklam metinleri ve marka sloganları.
+                    Kelimelerin gücünü kullanın.</div>
             </div>
             <i class="fas fa-arrow-right f-arrow"></i>
         </div>
@@ -383,7 +896,8 @@
             <div class="f-info">
                 <i class="fas fa-chess-knight f-icon"></i>
                 <div class="f-title">Marka Danışmanlığı</div>
-                <div class="f-desc">Dijital dönüşüm stratejileri, kriz yönetimi ve büyüme yol haritası. Size rehberlik ediyoruz.</div>
+                <div class="f-desc">Dijital dönüşüm stratejileri, kriz yönetimi ve büyüme yol haritası. Size rehberlik
+                    ediyoruz.</div>
             </div>
             <i class="fas fa-arrow-right f-arrow"></i>
         </div>
@@ -391,16 +905,20 @@
 
     <section class="video-showcase">
         <div class="vs-video-box" data-aos="fade-right">
-            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2070" class="vs-img" alt="Video Production">
+            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2070" class="vs-img"
+                alt="Video Production">
             <div class="play-overlay"><i class="fas fa-play"></i></div>
         </div>
         <div class="vs-text" data-aos="fade-left">
             <h2>Kayıt Başlasın!</h2>
-            <p>Bir video, binlerce fotoğraf karesine bedeldir. Markanızın hikayesini sinematik bir dille anlatıyoruz.</p>
+            <p>Bir video, binlerce fotoğraf karesine bedeldir. Markanızın hikayesini sinematik bir dille anlatıyoruz.
+            </p>
             <ul style="color:#ccc; font-size:1.1rem; line-height:1.8;">
                 <li><i class="fas fa-check" style="color:var(--primary); margin-right:10px;"></i> 4K Drone Çekimi</li>
-                <li><i class="fas fa-check" style="color:var(--primary); margin-right:10px;"></i> Kurgu & Montaj (Premiere/After Effects)</li>
-                <li><i class="fas fa-check" style="color:var(--primary); margin-right:10px;"></i> Ses Tasarımı & Mix</li>
+                <li><i class="fas fa-check" style="color:var(--primary); margin-right:10px;"></i> Kurgu & Montaj
+                    (Premiere/After Effects)</li>
+                <li><i class="fas fa-check" style="color:var(--primary); margin-right:10px;"></i> Ses Tasarımı & Mix
+                </li>
             </ul>
         </div>
     </section>
@@ -428,11 +946,71 @@
             <h2>Farklı Bir İsteğiniz Mi Var?</h2>
             <p style="color:#888;">Standart paketlere sığamıyorsanız, özel projenizi konuşalım.</p>
         </div>
-        <a href="index.html#iletisim" class="cta-btn" data-aos="fade-left">BİZE ULAŞIN</a>
+        <a href="/#iletisim" class="cta-btn" data-aos="fade-left">BİZE ULAŞIN</a>
     </section>
 
     <footer>
-        <p>&copy; 2025 Çözüm Creative | Stüdyo & Prodüksiyon</p>
+        <div class="footer-container">
+            <div class="footer-col footer-about">
+                <img src="src/logo.png" alt="Çözüm Creative" style="height: 60px; margin-bottom: 20px;">
+                <p>
+                    Markanızı dijital dünyada güçlendiren kreatif çözümler sunuyoruz. Estetik ve teknolojiyi
+                    birleştirerek sizi zirveye taşıyoruz.
+                </p>
+                <div class="footer-social-links">
+                    <a href="https://www.instagram.com/cozumcreative/" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/905300249586" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.linkedin.com/company/%C3%A7%C3%B6z%C3%BCmorta%C4%9F%C4%B1m/" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col footer-links">
+                <h3>Hızlı Erişim</h3>
+                <ul>
+                    <li><a href="/"><i class="fas fa-chevron-right"></i> Ana Sayfa</a></li>
+                    <li><a href="referanslar"><i class="fas fa-chevron-right"></i> Referanslar</a></li>
+                    <li><a href="/#iletisim"><i class="fas fa-chevron-right"></i> İletişim</a></li>
+                    <li><a href="/#iletisim"><i class="fas fa-chevron-right"></i> Teklif Al</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-links">
+                <h3>Hizmetlerimiz</h3>
+                <ul>
+                    <li><a href="yapay-zeka"><i class="fas fa-chevron-right"></i> Yapay Zeka & AI</a></li>
+                    <li><a href="web-tasarim"><i class="fas fa-chevron-right"></i> Web Tasarım</a></li>
+                    <li><a href="grafik-tasarim"><i class="fas fa-chevron-right"></i> Grafik Tasarım</a></li>
+                    <li><a href="dijital-pazarlama"><i class="fas fa-chevron-right"></i> Dijital Pazarlama</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-contact">
+                <h3>Bize Ulaşın</h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Eskişehir / Türkiye<br>Merkez Ofis</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+90 530 024 95 86</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>ortagimcozum@gmail.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; 2025 Çözüm Creative. Tüm Hakları Saklıdır.
+            </div>
+
+        </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -455,11 +1033,12 @@
         }
 
         // Header Scroll Efekti
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const header = document.getElementById('header');
-            if(window.scrollY > 50) header.style.background = 'rgba(0,0,0,0.98)';
+            if (window.scrollY > 50) header.style.background = 'rgba(0,0,0,0.98)';
             else header.style.background = 'rgba(5,5,5,0.95)';
         });
     </script>
 </body>
+
 </html>

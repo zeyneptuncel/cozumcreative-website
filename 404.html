@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <link rel="icon" type="image/png" href="src/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayfa Bulunamadı | Çözüm Creative</title>
+    <meta name="robots" content="noindex, follow">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #d32f2f;
+            --primary-glow: rgba(211, 47, 47, 0.6);
+            --bg-dark: #0a0a0a;
+            --text-color: #fff;
+        }
+
+        /* --- ÖZEL SCROLLBAR (Tüm siteye hava katar) --- */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+            /* Sitenin arka planı */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            /* Çubuğun rengi */
+            border-radius: 5px;
+            border: 2px solid #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+            /* Üstüne gelince kırmızı olsun */
+        }
+
+        /* Metin Seçme Rengi (Kullanıcı yazıyı seçtiğinde) */
+        ::selection {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-color);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            padding: 20px 5%;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(211, 47, 47, 0.3));
+        }
+
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .error-code {
+            font-family: 'Outfit', sans-serif;
+            font-size: 15rem;
+            font-weight: 900;
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);
+            position: relative;
+            background: linear-gradient(to bottom, #fff, #333);
+            -webkit-background-clip: text;
+            opacity: 0.8;
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        .zero-glow {
+            display: inline-block;
+            position: relative;
+            color: var(--primary);
+            text-shadow: 0 0 50px var(--primary-glow);
+            -webkit-text-stroke: 0px;
+        }
+
+        .error-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-top: -20px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .error-desc {
+            font-size: 1.1rem;
+            color: #aaa;
+            max-width: 500px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .home-btn {
+            padding: 18px 50px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(211, 47, 47, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid var(--primary);
+        }
+
+        .home-btn:hover {
+            background: transparent;
+            color: var(--primary);
+            box-shadow: 0 10px 40px rgba(211, 47, 47, 0.6);
+            transform: translateY(-5px);
+        }
+
+        .bg-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(211, 47, 47, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 8rem;
+            }
+
+            .error-title {
+                font-size: 2rem;
+            }
+
+            .error-desc {
+                padding: 0 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="/">
+                <img src="src/logo.png" alt="Çözüm Creative Logo">
+            </a>
+        </div>
+    </header>
+    <div class="error-container">
+        <div class="bg-glow"></div>
+        <div class="error-code">
+            4<span class="zero-glow">0</span>4
+        </div>
+        <h1 class="error-title">Rota Hesaplanamıyor</h1>
+        <p class="error-desc">
+            Aradığınız sayfa dijital boşlukta kaybolmuş olabilir veya taşınmış.
+            Panik yok, ana kumanda merkezine dönerek yolculuğa devam edebiliriz.
+        </p>
+        <a href="/" class="home-btn">
+            <i class="fas fa-arrow-left" style="margin-right:10px;"></i> Ana Sayfaya Dön
+        </a>
+    </div>
+    <footer>
+        &copy; 2025 Çözüm Creative. Tüm Hakları Saklıdır.
+    </footer>
+</body>
+
+</html>

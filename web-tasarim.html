@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
+    <link rel="icon" type="image/png" href="src/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Tasarım | Çözüm Creative</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Profesyonel Web Tasarım & Kodlama | Çözüm Creative</title>
+    <meta name="description"
+        content="Mobil uyumlu, hızlı ve SEO dostu web tasarım çözümleri. Gebze ve Kocaeli bölgesinde işletmenize özel modern web sitesi tasarımı.">
+    <meta name="keywords"
+        content="web tasarım, web sitesi fiyatları, kurumsal web tasarım, seo uyumlu site, gebze web tasarım, kocaeli web ajansı">
+    <meta name="author" content="Çözüm Creative">
+    <link rel="canonical" href="https://cozumcreative.com/web-tasarim">
+
+    <meta property="og:title" content="Web Tasarımda Standartların Ötesi | Çözüm Creative">
+    <meta property="og:description" content="Sadece güzel değil, çalışan ve kazandıran web siteleri kodluyoruz.">
+    <meta property="og:image" content="src/logo.png">
+    <meta property="og:type" content="website">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <style>
         /* --- GENEL AYARLAR --- */
         :root {
@@ -16,265 +33,878 @@
             --dark: #050505;
             --bg-dark: #0a0a0a;
             --code-bg: #1e1e1e;
+            --footer-bg: #030303;
+            /* Footer Rengi */
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* --- ÖZEL SCROLLBAR (Tüm siteye hava katar) --- */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+            /* Sitenin arka planı */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            /* Çubuğun rengi */
+            border-radius: 5px;
+            border: 2px solid #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+            /* Üstüne gelince kırmızı olsun */
+        }
+
+        /* Metin Seçme Rengi (Kullanıcı yazıyı seçtiğinde) */
+        ::selection {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Outfit', sans-serif;
             background-color: var(--bg-dark);
             color: #fff;
             overflow-x: hidden;
         }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
 
         /* --- HEADER & NAV --- */
         header {
-            position: fixed; top: 0; width: 100%; padding: 15px 5%; 
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; background: rgba(5,5,5,0.95);
-            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: 0.4s;
         }
-        .logo img { height: 60px; width: auto; }
-        
-        /* MASAÜSTÜ MENÜ */
-        .desktop-nav ul { display: flex; gap: 30px; align-items: center; }
-        .desktop-nav li { position: relative; padding: 10px 0; }
-        .desktop-nav a { color: #fff; font-weight: 600; font-size: 0.95rem; opacity: 0.8; }
-        .desktop-nav a:hover { color: var(--primary); opacity: 1; }
-        
-        /* --- PREMIUM DROPDOWN (KAPANMAYAN VERSİYON) --- */
-        .dropdown-menu {
-            position: absolute; top: 100%; left: 0; min-width: 240px;
-            background: rgba(15, 15, 15, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-            padding: 10px; display: flex; flex-direction: column; gap: 5px;
-            opacity: 0; visibility: hidden; transform: translateY(15px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; z-index: 9999;
-        }
-        /* GÖRÜNMEZ KÖPRÜ (Mouse Kaçırmayı Engeller) */
-        .dropdown-menu::before {
-            content: ""; position: absolute; top: -30px; left: 0; width: 100%; height: 30px; background: transparent; display: block;
-        }
-        
-        .desktop-nav li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(10px); pointer-events: auto; }
-        
-        .dropdown-menu a { 
-            padding: 12px 16px; color: #e0e0e0 !important; border-radius: 8px; 
-            transition: all 0.3s ease; display: flex; align-items: center; font-weight: 500; border-left: none; 
-        }
-        .dropdown-menu a:hover { background: rgba(211,47,47,0.15); color: #ff6b6b !important; transform: translateX(5px); padding-left: 16px; }
-        .dropdown-menu i { margin-right: 12px; color: var(--primary); transition: transform 0.3s ease; font-size: 1.1em; }
-        .dropdown-menu a:hover i { transform: scale(1.15); }
 
-        /* --- BUTON GÜNCELLEMESİ (BEYAZ) --- */
-        .cta-btn-header {
-            background: #fff; color: #000; padding: 10px 25px; border-radius: 50px; font-weight: 700; border: none;
+        .logo img {
+            height: 60px;
+            width: auto;
         }
-        .cta-btn-header:hover { background: #e0e0e0; transform: scale(1.05); }
+
+        /* MASAÜSTÜ MENÜ */
+        .desktop-nav ul {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .desktop-nav li {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .desktop-nav a {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .desktop-nav a:hover {
+            color: var(--primary);
+            opacity: 1;
+        }
+
+        /* --- PREMIUM DROPDOWN --- */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 240px;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .dropdown-menu::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: transparent;
+            display: block;
+        }
+
+        .desktop-nav li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(10px);
+            pointer-events: auto;
+        }
+
+        .dropdown-menu a {
+            padding: 12px 16px;
+            color: #e0e0e0 !important;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            border-left: none;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(211, 47, 47, 0.15);
+            color: #ff6b6b !important;
+            transform: translateX(5px);
+            padding-left: 16px;
+        }
+
+        .dropdown-menu i {
+            margin-right: 12px;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .dropdown-menu a:hover i {
+            transform: scale(1.15);
+        }
+
+        .cta-btn-header {
+            background: #fff;
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+        }
+
+        .cta-btn-header:hover {
+            background: #e0e0e0;
+            transform: scale(1.05);
+        }
 
         /* --- MOBİL MENÜ --- */
-        .mobile-toggle { display: none; cursor: pointer; z-index: 1002; }
-        .bar { width: 30px; height: 3px; background: #fff; margin: 6px 0; transition: 0.4s; border-radius: 2px; }
-        .mobile-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); background: var(--primary); }
-        .mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
-        .mobile-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); background: var(--primary); }
+        .mobile-toggle {
+            display: none;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        .bar {
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            margin: 6px 0;
+            transition: 0.4s;
+            border-radius: 2px;
+        }
+
+        .mobile-toggle.active .bar:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+            background: var(--primary);
+        }
+
+        .mobile-toggle.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-toggle.active .bar:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+            background: var(--primary);
+        }
 
         .mobile-menu-overlay {
-            position: fixed; top: -100%; left: 0; width: 100%; height: 100vh;
-            background: rgba(0,0,0,0.98); backdrop-filter: blur(20px);
-            z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: fixed;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             transition: top 0.6s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        .mobile-menu-overlay.active { top: 0; }
-        .mobile-menu-links { width: 100%; max-width: 400px; padding: 0 20px; }
-        .mobile-menu-links li { margin: 15px 0; text-align: center; }
-        .mobile-menu-links > li > a { font-size: 1.8rem; font-weight: 700; color: #fff; text-transform: uppercase; display: block; }
-        .mobile-menu-links > li > a:hover { color: var(--primary); letter-spacing: 2px; }
+
+        .mobile-menu-overlay.active {
+            top: 0;
+        }
+
+        .mobile-menu-links {
+            width: 100%;
+            max-width: 400px;
+            padding: 0 20px;
+        }
+
+        .mobile-menu-links li {
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .mobile-menu-links>li>a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .mobile-menu-links>li>a:hover {
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
 
         .mobile-dropdown-content {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
-            background: rgba(255,255,255,0.03); border-radius: 15px; margin-top: 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            margin-top: 10px;
         }
-        .mobile-dropdown-content.active { max-height: 400px; }
+
+        .mobile-dropdown-content.active {
+            max-height: 400px;
+        }
+
         .mobile-dropdown-content a {
-            display: block; padding: 12px; font-size: 1.1rem; color: #bbb !important; 
-            text-transform: capitalize; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 400;
+            display: block;
+            padding: 12px;
+            font-size: 1.1rem;
+            color: #bbb !important;
+            text-transform: capitalize;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-weight: 400;
         }
-        .mobile-dropdown-content a:hover { color: #fff !important; background: rgba(211,47,47,0.1); padding-left: 20px; }
-        .arrow-icon { transition: transform 0.3s; display: inline-block; }
-        .mobile-dropdown-btn.active .arrow-icon { transform: rotate(180deg); color: var(--primary); }
+
+        .mobile-dropdown-content a:hover {
+            color: #fff !important;
+            background: rgba(211, 47, 47, 0.1);
+            padding-left: 20px;
+        }
+
+        .arrow-icon {
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .mobile-dropdown-btn.active .arrow-icon {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
 
         .mobile-cta-btn {
-            background: var(--primary) !important; color: #fff !important; padding: 15px 40px;
-            border-radius: 50px; margin-top: 25px; font-size: 1.2rem !important;
-            box-shadow: 0 10px 30px rgba(211, 47, 47, 0.4); display: inline-block;
+            background: var(--primary) !important;
+            color: #fff !important;
+            padding: 15px 40px;
+            border-radius: 50px;
+            margin-top: 25px;
+            font-size: 1.2rem !important;
+            box-shadow: 0 10px 30px rgba(211, 47, 47, 0.4);
+            display: inline-block;
         }
 
         /* --- HERO SECTION --- */
         .web-hero {
-            min-height: 100vh; display: flex; align-items: center; padding: 100px 5% 0;
-            background: radial-gradient(circle at 10% 20%, rgba(211,47,47,0.1), transparent 40%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 5% 0;
+            background: radial-gradient(circle at 10% 20%, rgba(211, 47, 47, 0.1), transparent 40%);
         }
-        .hero-content { flex: 1; padding-right: 50px; }
-        .hero-visual { flex: 1; position: relative; }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero-visual {
+            flex: 1;
+            position: relative;
+        }
 
         .hero-badge {
-            background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px;
-            font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--primary);
-            border: 1px solid var(--primary); display: inline-block; margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            display: inline-block;
+            margin-bottom: 20px;
         }
-        h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; font-weight: 900; }
-        p.hero-desc { font-size: 1.2rem; color: #aaa; margin-bottom: 40px; line-height: 1.6; max-width: 600px; }
+
+        h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            font-weight: 900;
+        }
+
+        p.hero-desc {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 600px;
+        }
 
         /* --- CODE EDITOR ANIMATION --- */
         .code-window {
-            background: var(--code-bg); border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border: 1px solid #333; overflow: hidden; transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
-            transition: 0.5s; font-family: 'Space Mono', monospace;
+            background: var(--code-bg);
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            overflow: hidden;
+            transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+            transition: 0.5s;
+            font-family: 'Space Mono', monospace;
         }
-        .code-window:hover { transform: perspective(1000px) rotateY(0) rotateX(0); }
-        
+
+        .code-window:hover {
+            transform: perspective(1000px) rotateY(0) rotateX(0);
+        }
+
         .window-header {
-            background: #252526; padding: 10px 15px; display: flex; gap: 8px; border-bottom: 1px solid #333;
+            background: #252526;
+            padding: 10px 15px;
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid #333;
         }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
-        
-        .window-body { padding: 20px; color: #d4d4d4; font-size: 0.9rem; line-height: 1.6; }
-        .tag { color: #569cd6; } .attr { color: #9cdcfe; } .str { color: #ce9178; } .comment { color: #6a9955; }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red {
+            background: #ff5f56;
+        }
+
+        .yellow {
+            background: #ffbd2e;
+        }
+
+        .green {
+            background: #27c93f;
+        }
+
+        .window-body {
+            padding: 20px;
+            color: #d4d4d4;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tag {
+            color: #569cd6;
+        }
+
+        .attr {
+            color: #9cdcfe;
+        }
+
+        .str {
+            color: #ce9178;
+        }
+
+        .comment {
+            color: #6a9955;
+        }
 
         /* --- FEATURES GRID --- */
-        .features-section { padding: 100px 5%; }
+        .features-section {
+            padding: 100px 5%;
+        }
+
         .grid-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
+
         .feature-card {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
-            padding: 40px; border-radius: 20px; transition: 0.4s; position: relative; overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
         }
+
         .feature-card::before {
-            content:''; position: absolute; top:0; left:0; width: 100%; height: 5px; 
-            background: var(--primary); transform: scaleX(0); transform-origin: left; transition: 0.4s;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: 0.4s;
         }
-        .feature-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.05); }
-        .feature-card:hover::before { transform: scaleX(1); }
-        
-        .f-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
-        .f-title { font-size: 1.5rem; margin-bottom: 10px; }
-        .f-desc { color: #888; line-height: 1.6; }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .f-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .f-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .f-desc {
+            color: #888;
+            line-height: 1.6;
+        }
 
         /* --- TECH STACK (Marquee) --- */
         .tech-stack {
-            padding: 40px 0; background: #050505; border-top: 1px solid #222; border-bottom: 1px solid #222;
-            overflow: hidden; white-space: nowrap; margin-top: 50px;
+            padding: 40px 0;
+            background: #050505;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-top: 50px;
         }
-        .tech-track { display: inline-block; animation: scrollTech 15s linear infinite; }
+
+        .tech-track {
+            display: inline-block;
+            animation: scrollTech 15s linear infinite;
+        }
+
         .tech-item {
-            display: inline-block; margin: 0 40px; font-size: 1.5rem; color: #555; font-weight: 700;
+            display: inline-block;
+            margin: 0 40px;
+            font-size: 1.5rem;
+            color: #555;
+            font-weight: 700;
         }
-        @keyframes scrollTech { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        @keyframes scrollTech {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
 
         /* --- PROCESS STEPS --- */
-        .process-section { padding: 100px 5%; background: #0e0e0e; }
+        .process-section {
+            padding: 100px 5%;
+            background: #0e0e0e;
+        }
+
         .step-container {
-            display: flex; justify-content: space-between; align-items: center; margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 60px;
             position: relative;
         }
+
         .step-container::before {
-            content:''; position: absolute; top: 50px; left: 0; width: 100%; height: 2px;
-            background: #222; z-index: 0;
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #222;
+            z-index: 0;
         }
-        .step { position: relative; z-index: 1; text-align: center; width: 25%; }
+
+        .step {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 25%;
+        }
+
         .step-num {
-            width: 100px; height: 100px; background: #111; border: 2px solid #333;
-            border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; color: var(--primary); font-weight: 900; transition: 0.3s;
+            width: 100px;
+            height: 100px;
+            background: #111;
+            border: 2px solid #333;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 900;
+            transition: 0.3s;
         }
-        .step:hover .step-num { border-color: var(--primary); background: var(--primary); color: #fff; transform: scale(1.1); }
-        .step h3 { margin-bottom: 10px; }
-        .step p { color: #777; font-size: 0.9rem; padding: 0 10px; }
+
+        .step:hover .step-num {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: #777;
+            font-size: 0.9rem;
+            padding: 0 10px;
+        }
 
         /* --- CTA --- */
         .cta-wrap {
-            padding: 100px 5%; text-align: center; background: linear-gradient(to top, #000, #111);
+            padding: 100px 5%;
+            text-align: center;
+            background: linear-gradient(to top, #000, #111);
         }
-        .cta-btn {
-            padding: 20px 50px; background: var(--primary); color: #fff; border-radius: 50px;
-            font-weight: 700; font-size: 1.2rem; box-shadow: 0 10px 40px rgba(211,47,47,0.4);
-            display: inline-block; margin-top: 30px; transition: 0.3s;
-        }
-        .cta-btn:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(211,47,47,0.6); }
 
-        /* Footer */
-        footer { background: #000; padding: 40px; text-align: center; color: #444; border-top: 1px solid #111; }
+        .cta-btn {
+            padding: 20px 50px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 40px rgba(211, 47, 47, 0.4);
+            display: inline-block;
+            margin-top: 30px;
+            transition: 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(211, 47, 47, 0.6);
+        }
+
+        /* --- YENİ FOOTER CSS --- */
+        footer {
+            background-color: var(--footer-bg);
+            color: #bbb;
+            padding: 80px 5% 30px;
+            font-size: 0.95rem;
+            border-top: 1px solid #1a1a1a;
+            position: relative;
+        }
+
+        /* Footer Gradient Border */
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-col h3 {
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-about p {
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .footer-social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social-links a {
+            width: 40px;
+            height: 40px;
+            background: #1a1a1a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: 0.3s;
+            border: 1px solid #333;
+        }
+
+        .footer-social-links a:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .footer-links a i {
+            margin-right: 8px;
+            font-size: 0.8rem;
+            color: var(--primary);
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .footer-contact i {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-top: 4px;
+        }
+
+        .footer-contact span {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+        }
+
+        .footer-legal a {
+            margin-left: 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-legal a:hover {
+            color: var(--primary);
+        }
 
         /* --- RESPONSIVE AYARLAR --- */
         @media (max-width: 992px) {
-            .web-hero { flex-direction: column; padding-top: 120px; }
-            .hero-content { padding-right: 0; text-align: center; margin-bottom: 50px; }
-            h1 { font-size: 3rem; }
-            .step-container { flex-direction: column; gap: 40px; }
-            .step-container::before { display: none; }
-            .step { width: 100%; }
-            
+            .web-hero {
+                flex-direction: column;
+                padding-top: 120px;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                text-align: center;
+                margin-bottom: 50px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .step-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .step-container::before {
+                display: none;
+            }
+
+            .step {
+                width: 100%;
+            }
+
             /* Mobilde Desktop Menüyü Gizle */
-            .desktop-nav, .cta-btn-header { display: none !important; }
+            .desktop-nav,
+            .cta-btn-header {
+                display: none !important;
+            }
+
             /* Hamburger Menüyü Göster */
-            .mobile-toggle { display: block; }
+            .mobile-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-col h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-social-links {
+                justify-content: center;
+            }
+
+            .footer-contact li {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal a {
+                margin: 0 10px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="mobile-menu-overlay" id="mobileMenu">
         <ul class="mobile-menu-links">
-            <li><a href="index.html">Ana Sayfa</a></li>
-            
+            <li><a href="/">Ana Sayfa</a></li>
+
             <li>
                 <a href="javascript:void(0)" class="mobile-dropdown-btn" onclick="toggleSubMenu()">
                     Hizmetler <i class="fas fa-chevron-down arrow-icon" style="font-size: 1rem; margin-left: 10px;"></i>
                 </a>
                 <div class="mobile-dropdown-content" id="mobileSubMenu">
-                    <a href="web-tasarim.html" style="color:#fff;">Web Tasarım</a>
-                    <a href="grafik-tasarim.html">Grafik Tasarım</a>
-                    <a href="dijital-pazarlama.html">Dijital Pazarlama</a>
-                    <a href="diger-hizmetler.html">Diğer Hizmetler</a>
+                    <a href="web-tasarim" style="color:#fff;">Web Tasarım</a>
+                    <a href="grafik-tasarim">Grafik Tasarım</a>
+                    <a href="dijital-pazarlama">Dijital Pazarlama</a>
+                    <a href="diger-hizmetler">Diğer Hizmetler</a>
                 </div>
             </li>
-            
-            <li><a href="referanslar.html">Referanslar</a></li>
-            <li><a href="index.html#iletisim" onclick="toggleMobileMenu()">İletişim</a></li>
+
+            <li><a href="referanslar">Referanslar</a></li>
+            <li><a href="/#iletisim" onclick="toggleMobileMenu()">İletişim</a></li>
 
             <li style="margin-top: 20px;">
-                <a href="index.html#iletisim" onclick="toggleMobileMenu()" class="mobile-cta-btn">TEKLİF AL</a>
+                <a href="/#iletisim" onclick="toggleMobileMenu()" class="mobile-cta-btn">TEKLİF AL</a>
             </li>
         </ul>
+        <div class="close-popup-btn" onclick="toggleMobileMenu()" style="top:30px; right:30px; font-size:2rem;">×</div>
     </div>
 
     <header id="header">
         <div class="logo">
-            <a href="index.html"><img src="src/logo.png" alt="Logo"></a>
+            <a href="/"><img src="src/logo.png" alt="Çözüm Creative Web Tasarım Ajansı Logosu"></a>
         </div>
-        
+
         <nav class="desktop-nav">
             <ul>
-                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="/">Ana Sayfa</a></li>
                 <li style="position:relative;">
-                    <a href="#" style="color:var(--primary);">Hizmetler <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <a href="#" style="color:var(--primary);">Hizmetler <i class="fas fa-chevron-down"
+                            style="font-size:0.7rem;"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="web-tasarim.html"><i class="fas fa-code"></i> Web Tasarım</a></li>
-                        <li><a href="grafik-tasarim.html"><i class="fas fa-paint-brush"></i> Grafik Tasarım</a></li>
-                        <li><a href="dijital-pazarlama.html"><i class="fas fa-bullhorn"></i> Dijital Pazarlama</a></li>
-                        <li><a href="diger-hizmetler.html"><i class="fas fa-plus-circle"></i> Diğer Hizmetler</a></li>
+                        <li><a href="yapay-zeka" style="color: #00f2ff;"><i class="fas fa-robot"></i> Yapay Zeka &
+                                AI</a></li>
+                        <li><a href="web-tasarim"><i class="fas fa-code"></i> Web Tasarım</a></li>
+                        <li><a href="grafik-tasarim"><i class="fas fa-paint-brush"></i> Grafik Tasarım</a></li>
+                        <li><a href="dijital-pazarlama"><i class="fas fa-bullhorn"></i> Dijital Pazarlama</a></li>
+                        <li><a href="diger-hizmetler"><i class="fas fa-plus-circle"></i> Diğer Hizmetler</a></li>
                     </ul>
                 </li>
-                <li><a href="referanslar.html">Referanslar</a></li>
-                <li><a href="index.html#iletisim">İletişim</a></li>
+
+                <li><a href="referanslar">Referanslar</a></li>
+                <li><a href="/#iletisim">İletişim</a></li>
             </ul>
         </nav>
-        <a href="index.html#iletisim" class="cta-btn-header">Teklif Al</a>
+        <a href="/#iletisim" class="cta-btn-header">Teklif Al</a>
 
         <div class="mobile-toggle" onclick="toggleMobileMenu()">
             <div class="bar"></div>
@@ -287,10 +917,11 @@
         <div class="hero-content" data-aos="fade-right">
             <div class="hero-badge">&lt;code_mode_on&gt;</div>
             <h1>Dijital Dünyadaki <br> <span style="color:var(--primary);">Merkeziniz.</span></h1>
-            <p class="hero-desc">Hazır şablonlardan sıkılmadınız mı? Sadece size özel kodlanmış, Google'ın sevdiği, müşterilerinizin bayıldığı modern web siteleri tasarlıyoruz.</p>
+            <p class="hero-desc">Hazır şablonlardan sıkılmadınız mı? Sadece size özel kodlanmış, Google'ın sevdiği,
+                müşterilerinizin bayıldığı modern web siteleri tasarlıyoruz.</p>
             <a href="#ozellikler" style="border-bottom: 1px solid #fff; padding-bottom: 5px;">Projelerimizi İncele</a>
         </div>
-        
+
         <div class="hero-visual" data-aos="fade-left">
             <div class="code-window">
                 <div class="window-header">
@@ -301,15 +932,18 @@
                 <div class="window-body">
                     <span class="tag">&lt;body&gt;</span><br>
                     &nbsp;&nbsp;<span class="tag">&lt;header&gt;</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;h1</span> <span class="attr">class</span>=<span class="str">"brand-title"</span><span class="tag">&gt;</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;h1</span> <span class="attr">class</span>=<span
+                        class="str">"brand-title"</span><span class="tag">&gt;</span><br>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Çözüm Creative<br>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/h1&gt;</span><br>
                     &nbsp;&nbsp;<span class="tag">&lt;/header&gt;</span><br>
                     <br>
                     &nbsp;&nbsp;<span class="comment">&lt;!-- Hedef: Zirveye Oynamak --&gt;</span><br>
                     &nbsp;&nbsp;<span class="tag">&lt;script&gt;</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">function</span> <span class="attr">boostSales</span>() {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attr">return</span> <span class="str">"Success!"</span>;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">function</span> <span class="attr">boostSales</span>()
+                    {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attr">return</span> <span
+                        class="str">"Success!"</span>;<br>
                     &nbsp;&nbsp;&nbsp;&nbsp;}<br>
                     &nbsp;&nbsp;<span class="tag">&lt;/script&gt;</span><br>
                     <span class="tag">&lt;/body&gt;</span>
@@ -320,21 +954,21 @@
 
     <div class="tech-stack">
         <div class="tech-track">
-            <span class="tech-item">HTML5</span>
-            <span class="tech-item">CSS3</span>
-            <span class="tech-item">JAVASCRIPT</span>
-            <span class="tech-item">REACT</span>
-            <span class="tech-item">WORDPRESS</span>
-            <span class="tech-item">PHP</span>
-            <span class="tech-item">SEO</span>
-            <span class="tech-item">BOOTSTRAP</span>
-            <span class="tech-item">HTML5</span>
-            <span class="tech-item">CSS3</span>
-            <span class="tech-item">JAVASCRIPT</span>
-            <span class="tech-item">REACT</span>
+            <span class="tech-item"><i class="fab fa-html5" style="color:#e34c26;"></i> HTML5</span>
+            <span class="tech-item"><i class="fab fa-css3-alt" style="color:#264de4;"></i> CSS3</span>
+            <span class="tech-item"><i class="fab fa-js" style="color:#f7df1e;"></i> JAVASCRIPT</span>
+            <span class="tech-item"><i class="fab fa-react" style="color:#61dafb;"></i> REACT.JS</span>
+            <span class="tech-item"><i class="fab fa-wordpress" style="color:#21759b;"></i> WORDPRESS</span>
+            <span class="tech-item"><i class="fab fa-php" style="color:#777bb4;"></i> PHP</span>
+            <span class="tech-item"><i class="fas fa-database" style="color:#00758f;"></i> MYSQL</span>
+            <span class="tech-item"><i class="fab fa-bootstrap" style="color:#7952b3;"></i> BOOTSTRAP</span>
+            <span class="tech-item"><i class="fab fa-figma" style="color:#f24e1e;"></i> FIGMA</span>
+            <span class="tech-item"><i class="fas fa-search" style="color:#d32f2f;"></i> SEO</span>
+            <span class="tech-item"><i class="fab fa-html5" style="color:#e34c26;"></i> HTML5</span>
+            <span class="tech-item"><i class="fab fa-css3-alt" style="color:#264de4;"></i> CSS3</span>
+            <span class="tech-item"><i class="fab fa-js" style="color:#f7df1e;"></i> JAVASCRIPT</span>
         </div>
     </div>
-
     <section class="features-section" id="ozellikler">
         <div style="text-align:center; margin-bottom:60px;" data-aos="fade-up">
             <h2>Standartların Ötesinde</h2>
@@ -345,22 +979,26 @@
             <div class="feature-card" data-aos="fade-up">
                 <i class="fas fa-mobile-alt f-icon"></i>
                 <h3 class="f-title">%100 Responsive</h3>
-                <p class="f-desc">Telefonda, tablette, bilgisayarda... Siteniz her ekranda jilet gibi görünür. Mobil uyumluluk bizim için opsiyon değil, standarttır.</p>
+                <p class="f-desc">Telefonda, tablette, bilgisayarda... Siteniz her ekranda jilet gibi görünür. Mobil
+                    uyumluluk bizim için opsiyon değil, standarttır.</p>
             </div>
             <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
                 <i class="fas fa-rocket f-icon"></i>
                 <h3 class="f-title">Işık Hızında</h3>
-                <p class="f-desc">Yavaş açılan siteler müşteri kaybettirir. Gereksiz kodlardan arındırılmış, optimize edilmiş altyapı ile siteniz uçuşa geçer.</p>
+                <p class="f-desc">Yavaş açılan siteler müşteri kaybettirir. Gereksiz kodlardan arındırılmış, optimize
+                    edilmiş altyapı ile siteniz uçuşa geçer.</p>
             </div>
             <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
                 <i class="fas fa-search f-icon"></i>
                 <h3 class="f-title">SEO Dostu</h3>
-                <p class="f-desc">Google'ın dilinden anlıyoruz. Temiz kod yapısı ve doğru etiketlemelerle arama motorlarında üst sıralara çıkmaya hazır olun.</p>
+                <p class="f-desc">Google'ın dilinden anlıyoruz. Temiz kod yapısı ve doğru etiketlemelerle arama
+                    motorlarında üst sıralara çıkmaya hazır olun.</p>
             </div>
             <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
                 <i class="fas fa-shield-alt f-icon"></i>
                 <h3 class="f-title">Yüksek Güvenlik</h3>
-                <p class="f-desc">SSL sertifikası, güvenlik duvarı ve düzenli yedeklemelerle verileriniz ve müşterileriniz her zaman güvende.</p>
+                <p class="f-desc">SSL sertifikası, güvenlik duvarı ve düzenli yedeklemelerle verileriniz ve
+                    müşterileriniz her zaman güvende.</p>
             </div>
         </div>
     </section>
@@ -369,7 +1007,7 @@
         <div style="text-align:center;" data-aos="fade-down">
             <h2 style="font-size:2.5rem;">Yol Haritamız</h2>
         </div>
-        
+
         <div class="step-container">
             <div class="step" data-aos="zoom-in">
                 <div class="step-num">1</div>
@@ -396,12 +1034,72 @@
 
     <div class="cta-wrap" data-aos="fade-up">
         <h2 style="font-size:3rem; margin-bottom:20px;">Markanızı Kodlamaya Başlayalım</h2>
-        <p style="color:#aaa; max-width:600px; margin:0 auto;">Dijitaldeki yerinizi ayırtmak için daha fazla beklemeyin.</p>
-        <a href="index.html#iletisim" class="cta-btn">TEKLİF ALIN</a>
+        <p style="color:#aaa; max-width:600px; margin:0 auto;">Dijitaldeki yerinizi ayırtmak için daha fazla beklemeyin.
+        </p>
+        <a href="/#iletisim" class="cta-btn">TEKLİF ALIN</a>
     </div>
 
     <footer>
-        <p>&copy; 2025 Çözüm Creative | Web & Teknoloji</p>
+        <div class="footer-container">
+            <div class="footer-col footer-about">
+                <img src="src/logo.png" alt="Çözüm Creative" style="height: 60px; margin-bottom: 20px;">
+                <p>
+                    Markanızı dijital dünyada güçlendiren kreatif çözümler sunuyoruz. Estetik ve teknolojiyi
+                    birleştirerek sizi zirveye taşıyoruz.
+                </p>
+                <div class="footer-social-links">
+                    <a href="https://www.instagram.com/cozumcreative/" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/905300249586" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.linkedin.com/company/%C3%A7%C3%B6z%C3%BCmorta%C4%9F%C4%B1m/" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col footer-links">
+                <h3>Hızlı Erişim</h3>
+                <ul>
+                    <li><a href="/"><i class="fas fa-chevron-right"></i> Ana Sayfa</a></li>
+                    <li><a href="referanslar"><i class="fas fa-chevron-right"></i> Referanslar</a></li>
+                    <li><a href="/#iletisim"><i class="fas fa-chevron-right"></i> İletişim</a></li>
+                    <li><a href="/#iletisim"><i class="fas fa-chevron-right"></i> Teklif Al</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-links">
+                <h3>Hizmetlerimiz</h3>
+                <ul>
+                    <li><a href="yapay-zeka"><i class="fas fa-chevron-right"></i> Yapay Zeka & AI</a></li>
+                    <li><a href="web-tasarim"><i class="fas fa-chevron-right"></i> Web Tasarım</a></li>
+                    <li><a href="grafik-tasarim"><i class="fas fa-chevron-right"></i> Grafik Tasarım</a></li>
+                    <li><a href="dijital-pazarlama"><i class="fas fa-chevron-right"></i> Dijital Pazarlama</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-contact">
+                <h3>Bize Ulaşın</h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Eskişehir / Türkiye<br>Merkez Ofis</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+90 530 024 95 86</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>ortagimcozum@gmail.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; 2025 Çözüm Creative. Tüm Hakları Saklıdır.
+            </div>
+        </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -424,11 +1122,12 @@
         }
 
         // Header Scroll Efekti
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const header = document.getElementById('header');
-            if(window.scrollY > 50) header.style.background = 'rgba(0,0,0,0.98)';
+            if (window.scrollY > 50) header.style.background = 'rgba(0,0,0,0.98)';
             else header.style.background = 'rgba(5,5,5,0.95)';
         });
     </script>
 </body>
+
 </html>
