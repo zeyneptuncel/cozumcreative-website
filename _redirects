@@ -1,2 +1,5 @@
-/* /index.html  200
-/* /:splat.html 200
+# 1. Kural: Linkin sonuna otomatik .html ekle (ama adreste gösterme)
+/* /:splat.html  200
+
+# 2. Kural: Eğer yukarıdaki gibi bir sayfa yoksa 404 sayfasına git
+/* /404.html  404
