@@ -1,1 +1,1 @@
-Çözüm Creative website : https://github.com/zeyneptuncel/cozumcreative-website.git
+Çözüm Creative website : https://zeyneptuncel.github.io/cozumcreative-website/
